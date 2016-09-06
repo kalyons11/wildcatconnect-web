@@ -456,6 +456,23 @@ function increment() {
 
 Parse.Cloud.define("ECU", function (request, response) {
     var data = request.params.data;
-    utils.log("info", "Here is the data!!!", data);
-    response.success("DONE!");
+    var messageString = data.content;
+    var postDate = data.postDate;
+    var firstID = parseInt(data.extracurricularUpdateID);
+    var array = data.finalUpdates;
+    for (var i = 0; i < array.length; i++) {
+        var object = new Parse.Object("ExtracurricularUpdateStructure");
+        object.set("messageString", messageString);
+        object.set("postDate", postDate);
+        object.set("extracurricularUpdateID", firstID + i);
+        object.set("extracurricularID", array[i]);
+        object.save({
+            success: function (o) {
+                if (i == array.length - 1)
+                    response.success("SUCCESS!!!");
+            }, error: function (o, error) {
+                response.error(error);
+            }
+        });
+    }
 });
