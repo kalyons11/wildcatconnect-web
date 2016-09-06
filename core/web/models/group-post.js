@@ -37,9 +37,9 @@ postSchema.methods.validateData = function(data) {
 };
 
 postSchema.methods.generateObject = function(array) {
-    var result = { };
+    var result = new Array();
     for (var i = 0; i < array.length; i++)
-        result[i] = parseInt(array[i]);
+        result.push(parseInt(array[i]));
     return result;
 }
 

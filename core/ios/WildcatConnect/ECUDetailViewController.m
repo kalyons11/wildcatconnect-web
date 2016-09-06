@@ -46,14 +46,7 @@
      separator.backgroundColor = [UIColor blackColor];
      [scrollView addSubview:separator];
      
-     messageLabel = [[UITextView alloc] initWithFrame:CGRectMake(10, separator.frame.origin.y + separator.frame.size.height + 10, self.view.frame.size.width - 20, 20)];
-     messageLabel.text = self.messageString;
-     messageLabel.dataDetectorTypes = UIDataDetectorTypeLink;
-     messageLabel.editable = false;
-     messageLabel.scrollEnabled = false;
-     [messageLabel setFont:[UIFont systemFontOfSize:16]];
-     [messageLabel sizeToFit];
-     [scrollView addSubview:messageLabel];
+     [scrollView addSubview:[Utils createWebViewForDelegate:self forString:self.messageString withSeparator:separator]];
      
      self.automaticallyAdjustsScrollViewInsets = YES;
      UIEdgeInsets adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, 70, 0);

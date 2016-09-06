@@ -374,7 +374,9 @@
           }
      }
      PFQuery *query = [ExtracurricularUpdateStructure query];
-     [query whereKey:@"extracurricularID" containedIn:myArray];
+     BOOL test = [PFUser currentUser] != nil && [[[PFUser currentUser] objectForKey:@"userType"]  isEqual:@"Developer"];
+     if (! test)
+          [query whereKey:@"extracurricularID" containedIn:myArray];
      [query orderByDescending:@"createdAt"];
      [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
           [returnArray addObjectsFromArray:objects];

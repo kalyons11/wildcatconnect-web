@@ -88,10 +88,20 @@ exports.saveModel = function(model, req, res, message, path, action, subaction) 
                 var ID = utils.getID(theFirst);
                 var otherData = { files: req.files };
                 var params = utils.fillParamaters(model, ID, otherData);
-                var object = new Parse.Object(model.customModel.type);
-                object.save(params).then(function(theObject, error) {
-                    return exports.handleSave(model, error, req, res, message, path, action, subaction);
-                });
+                if (model.customModel.type == "ExtracurricularUpdateStructure") {
+                    Parse.Cloud.run("ECU", { data: params }, {
+                        success: function (object) {
+                            return exports.handleSave(model, null, req, res, message, path, action, subaction);
+                        }, error: function (error) {
+                            return exports.handleSave(model, error, req, res, message, path, action, subaction);
+                        }
+                    });
+                } else {
+                    var object = new Parse.Object(model.customModel.type);
+                    object.save(params).then(function(theObject, error) {
+                        return exports.handleSave(model, error, req, res, message, path, action, subaction);
+                    });
+                }
             });
         });
     }
@@ -118,8 +128,8 @@ exports.handleSave = function(theModel, error, req, res, message, path, action, 
 		model.customModel = theModel.customModel;
 
 		var newBody = utils.removeParams(req.body);
-		var error = new Error();
-		var x = utils.processError(response.error, error, [newBody]);
+		var fake = new Error();
+		var x = utils.processError(error, fake, [newBody]);
 		utils.log('error', x.message, { "stack" : x.stack , "objects" : x.objects });
 
 		var myError = new ApplicationMessage();

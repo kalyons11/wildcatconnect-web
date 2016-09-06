@@ -453,3 +453,9 @@ function increment() {
         }
     });
 }
+
+Parse.Cloud.define("ECU", function (request, response) {
+    var data = request.params.data;
+    utils.log("info", "Here is the data!!!", data);
+    response.success("DONE!");
+});
