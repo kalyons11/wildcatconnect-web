@@ -641,6 +641,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+     [PFPush handlePush:userInfo];
      self.alertString = [userInfo objectForKey:@"a"];
      if (self.alertString) {
           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You have 1 new alert message. Would you like to read now?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
