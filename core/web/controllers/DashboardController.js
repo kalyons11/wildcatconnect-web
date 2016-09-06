@@ -89,13 +89,25 @@ exports.saveModel = function(model, req, res, message, path, action, subaction) 
                 var otherData = { files: req.files };
                 var params = utils.fillParamaters(model, ID, otherData);
                 if (model.customModel.type == "ExtracurricularUpdateStructure") {
-                    Parse.Cloud.run("ECU", { data: params }, {
-                        success: function (object) {
-                            return exports.handleSave(model, null, req, res, message, path, action, subaction);
-                        }, error: function (error) {
-                            return exports.handleSave(model, error, req, res, message, path, action, subaction);
-                        }
-                    });
+                    var messageString = params.content;
+                    var postDate = params.postDate;
+                    var firstID = parseInt(params.extracurricularUpdateID);
+                    var array = params.finalUpdates;
+                    for (var i = 0; i < array.length; i++) {
+                        var object = new Parse.Object("ExtracurricularUpdateStructure");
+                        object.set("messageString", messageString);
+                        object.set("postDate", postDate);
+                        object.set("extracurricularUpdateID", firstID + i);
+                        object.set("extracurricularID", array[i]);
+                        object.save({
+                            success: function (o) {
+                                if (i == array.length)
+                                    return exports.handleSave(model, null, req, res, message, path, action, subaction);
+                            }, error: function (o, error) {
+                                return exports.handleSave(model, error, req, res, message, path, action, subaction);
+                            }
+                        });
+                    }
                 } else {
                     var object = new Parse.Object(model.customModel.type);
                     object.save(params).then(function(theObject, error) {
