@@ -224,7 +224,7 @@ Parse.Cloud.define("updateLinks", function(request, response) {
     });
 });
 
-Parse.Cloud.afterSave("ExtracurricularUpdateStructure", function(request, response) {
+Parse.Cloud.afterSave("ExtracurricularUpdateStructure", function(request) {
     if (request.object.get("extracurricularUpdateID") != null) {
         increment();
         var query = new Parse.Query("ExtracurricularStructure");
@@ -241,15 +241,7 @@ Parse.Cloud.afterSave("ExtracurricularUpdateStructure", function(request, respon
                         badge: "Increment"
                     }
                 }, {
-                    useMasterKey: true,
-                    success: function() {
-                        utils.log("info", "Pushed.", null);
-                        response.success("Done!");
-                    },
-                    error: function(error) {
-                        utils.log("info", "Failed to push.", error);
-                        response.error(error);
-                    }
+                    useMasterKey: true
                 });
             },
             error: function(error) {
