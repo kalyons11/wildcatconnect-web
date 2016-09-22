@@ -398,7 +398,7 @@ exports.dayGenerate = function (req, res) {
     query.first({
         success: function(object) {
             var date = new Date();
-            if (object.get("value") === "NORMAL" && date.getDay() != 0 && date.getDay() != 1) {
+            if (object.get("value") === "NORMAL" && date.getDay() != 0 && date.getDay() != 6) {
                 var query = new Parse.Query("SchoolDayStructure");
                 query.descending("schoolDayID");
                 query.first({
@@ -430,7 +430,7 @@ exports.dayGenerate = function (req, res) {
                             var SchoolDayStructure = Parse.Object.extend("SchoolDayStructure");
                             var newDay = new SchoolDayStructure();
                             newDay.save({
-                                "hasImage": 0,
+                                "hasImage": false,
                                 "imageString" : "None.",
                                 "messageString" : "No alerts yet.",
                                 "scheduleType" : newType,
@@ -478,7 +478,7 @@ exports.dayGenerate = function (req, res) {
                             var SchoolDayStructure = Parse.Object.extend("SchoolDayStructure");
                             var newDay = new SchoolDayStructure();
                             newDay.save({
-                                "hasImage": 0,
+                                "hasImage": false,
                                 "imageString" : "None.",
                                 "messageString" : "No alerts yet.",
                                 "scheduleType" : newType,
