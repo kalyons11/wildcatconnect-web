@@ -91,6 +91,7 @@ exports.getSignup = function(req, res) {
 };
 
 exports.postSignup = function(req, res) {
+    try {
 	var model = new Signup();
 	model.renderModel(req.body);
 	if (model.page.theErrors.length > 0) {
@@ -99,6 +100,7 @@ exports.postSignup = function(req, res) {
 	else {
 		exports.trySignup(req.body).then(function(response) {
 			if (response.auth) {
+			    utils.log("info", "Made it here!!!1", null);
 				var model = new Login();
 				var data = { user: { auth: false } };
 				model.renderModel(data);
@@ -111,6 +113,7 @@ exports.postSignup = function(req, res) {
 				res.redirect("/app/login");
 			}
 			else {
+                utils.log("info", "Made it here!!!2", null);
 				var model = new Signup();
 				model.renderModel(req.body);
 
@@ -132,7 +135,10 @@ exports.postSignup = function(req, res) {
 				res.render("signup", { model: model , session: null });
 			}
 		});
-	}
+	}} catch(e) {
+        var x = utils.processError(e, new Error(), null);
+        utils.log('error', x.message, { "stack" : x.stack , "objects" : x.objects });
+    }
 };
 
 exports.trySignup = function(data) {
@@ -140,6 +146,7 @@ exports.trySignup = function(data) {
 		var userRegisterStructure = Classes.UserRegisterStructure.initialize(data);
 		Classes.UserRegisterStructure.validate(userRegisterStructure).then(function(response) {
 			if (response.auth) {
+                utils.log("info", "Made it here!!!3", null);
 				userRegisterStructure.save(null, {
 					success: function(object) {
 						fulfill({ auth: true });
@@ -149,6 +156,7 @@ exports.trySignup = function(data) {
 					}
 				});
 			} else {
+                utils.log("info", "Made it here!!!4", null);
 				fulfill({ auth: false, error: response.error });
 			}
 		});	
