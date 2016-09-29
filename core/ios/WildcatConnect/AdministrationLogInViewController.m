@@ -356,27 +356,20 @@
                response = 1;
                dispatch_group_leave(serviceGroup);
           } else {
-               [PFCloud callFunctionInBackground:@"encryptPassword" withParameters:@{ @"password" : [dictionary objectForKey:@"password"] } block:^(id  _Nullable object, NSError * _Nullable error) {
-                    if (error != nil) {
-                         theError = error;
+               UserRegisterStructure *URS = [[UserRegisterStructure alloc] init];
+               URS.firstName = [dictionary objectForKey:@"firstName"];
+               URS.lastName = [dictionary objectForKey:@"lastName"];
+               URS.email = [dictionary objectForKey:@"email"];
+               URS.username = [dictionary objectForKey:@"username"];
+               URS.password = [Utils encrypt:[dictionary objectForKey:@"password"]];
+               URS.key =  [self randomStringWithLength:11];
+               [URS saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable errorTwo) {
+                    if (errorTwo != nil) {
+                         theError = errorTwo;
                          response = 0;
-                    }
-                         //object contains the encrypted password
-                    UserRegisterStructure *URS = [[UserRegisterStructure alloc] init];
-                    URS.firstName = [dictionary objectForKey:@"firstName"];
-                    URS.lastName = [dictionary objectForKey:@"lastName"];
-                    URS.email = [dictionary objectForKey:@"email"];
-                    URS.username = [dictionary objectForKey:@"username"];
-                    URS.password = object;
-                    URS.key =  [self randomStringWithLength:11];
-                    [URS saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable errorTwo) {
-                         if (errorTwo != nil) {
-                              theError = errorTwo;
-                              response = 0;
-                         } else
-                              response = 2;
-                         dispatch_group_leave(serviceGroup);
-                    }];
+                    } else
+                         response = 2;
+                    dispatch_group_leave(serviceGroup);
                }];
           }
      }];

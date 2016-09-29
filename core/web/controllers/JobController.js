@@ -413,19 +413,19 @@ exports.dayGenerate = function (req, res) {
                             var oldType = object.get("scheduleType");
                             var newType = "*";
                             if (oldType.indexOf("A") > -1) {
-                                newType = "B1";
+                                newType = "B";
                             } else if (oldType.indexOf("B") > -1) {
-                                newType = "C1";
+                                newType = "C";
                             } else if (oldType.indexOf("C") > -1) {
-                                newType = "D1";
+                                newType = "D";
                             } else if (oldType.indexOf("D") > -1) {
-                                newType = "E1";
+                                newType = "E";
                             } else if (oldType.indexOf("E") > -1) {
-                                newType = "F1";
+                                newType = "F";
                             } else if (oldType.indexOf("F") > -1) {
-                                newType = "G1";
+                                newType = "G";
                             } else if (oldType.indexOf("G") > -1) {
-                                newType = "A1";
+                                newType = "A";
                             };
                             var SchoolDayStructure = Parse.Object.extend("SchoolDayStructure");
                             var newDay = new SchoolDayStructure();
