@@ -441,6 +441,7 @@
 		0ADBEF4D1C0ACC4900E946F6 /* admin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "admin@2x.png"; sourceTree = "<group>"; };
 		0AEE8AEE1C72D95900959533 /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
 		0AEE8AEF1C72D95900959533 /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
+		0AF21F0C1D9FE03000CF9E57 /* WildcatConnect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WildcatConnect.entitlements; sourceTree = "<group>"; };
 		0AF2C58B1C97B01600E5D2E5 /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like@2x.png"; path = "../like@2x.png"; sourceTree = "<group>"; };
 		0AF2C58D1C97B3E400E5D2E5 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done@2x.png"; path = "../done@2x.png"; sourceTree = "<group>"; };
 		0AF9D3341C43E9C400618042 /* minus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "minus@2x.png"; path = "../minus@2x.png"; sourceTree = "<group>"; };
@@ -554,6 +555,7 @@
 		0ADBEE271C0ABD5E00E946F6 /* WildcatConnect */ = {
 			isa = PBXGroup;
 			children = (
+				0AF21F0C1D9FE03000CF9E57 /* WildcatConnect.entitlements */,
 				0A976EB71D616374009D8E9C /* Utils.h */,
 				0A976EB81D616374009D8E9C /* Utils.m */,
 				0A976EC21D62982F009D8E9C /* Project.pch */,
@@ -1398,8 +1400,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: WildcatConnect Apple (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1415,7 +1418,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7b46de0d-d5c5-45f2-a6bb-f8831b302111";
 			};
 			name = Debug;
 		};
@@ -1425,6 +1428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1442,7 +1446,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7b46de0d-d5c5-45f2-a6bb-f8831b302111";
 			};
 			name = Release;
 		};
