@@ -46,6 +46,8 @@ module.exports.linqForKeyValuePair = function(objects, key, value, isParse) {
     return result;
 };
 
+
+
 global.config = module.exports.decryptObject(global.config);
 
 var config = global.config;
@@ -65,6 +67,8 @@ winston.add(winston.transports.Loggly, {
 });
 
 //endregion
+
+
 
 module.exports.processError = function(realError, fakeError, objects) {
 	/*
