@@ -100,7 +100,6 @@ exports.postSignup = function(req, res) {
 	else {
 		exports.trySignup(req.body).then(function(response) {
 			if (response.auth) {
-			    utils.log("info", "Made it here!!!1", null);
 				var model = new Login();
 				var data = { user: { auth: false } };
 				model.renderModel(data);
@@ -113,7 +112,6 @@ exports.postSignup = function(req, res) {
 				res.redirect("/app/login");
 			}
 			else {
-                utils.log("info", "Made it here!!!2", null);
 				var model = new Signup();
 				model.renderModel(req.body);
 
@@ -143,24 +141,53 @@ exports.postSignup = function(req, res) {
 
 exports.trySignup = function(data) {
 	return new Promise(function(fulfill, reject) {
-		var userRegisterStructure = Classes.UserRegisterStructure.initialize(data);
-		Classes.UserRegisterStructure.validate(userRegisterStructure).then(function(response) {
-			if (response.auth) {
-                utils.log("info", "Made it here!!!3", null);
-				userRegisterStructure.save(null, {
-					success: function(object) {
-						fulfill({ auth: true });
-					},
-					error: function(error) {
-						fulfill({ auth: false, error: error });
-					}
-				});
-			} else {
-                utils.log("info", "Made it here!!!4", null);
-				fulfill({ auth: false, error: response.error });
-			}
-		});	
-	});
+        var count = 0;
+        var username = data.username;
+        var email = data.email;
+        var query = new Parse.Query("User");
+        query.equalTo("username", username);
+        query.find().then(function(usersA) {
+            count += usersA.length;
+            var queryFour = new Parse.Query("User");
+            queryFour.equalTo("email", email);
+            return queryFour.find();
+        }).then(function(usersB) {
+            count += usersB.length;
+            var queryTwo = new Parse.Query("UserRegisterStructure");
+            queryTwo.equalTo("username", username);
+            return queryTwo.find();
+        }).then(function(usersC) {
+            count += usersC.length;
+            var queryThree = new Parse.Query("UserRegisterStructure");
+            queryThree.equalTo("email", email);
+            return queryThree.find();
+        }).then(function(usersD) {
+            count += usersD.length;
+            if (count == 0) {
+                var userRegisterStructure = new Parse.Object("UserRegisterStructure");
+                userRegisterStructure.set("firstName", data.firstName);
+                userRegisterStructure.set("lastName", data.lastName);
+                userRegisterStructure.set("email", data.email);
+                userRegisterStructure.set("username", data.username);
+                var newPassword = utils.encrypt(data.password);
+                userRegisterStructure.set("password", newPassword);
+                var key = utils.generateKey();
+                userRegisterStructure.set("key", key);
+                userRegisterStructure.save(null, {
+                    success: function(object) {
+                        fulfill({ auth: true });
+                    },
+                    error: function(error) {
+                        fulfill({ auth: false, error: error });
+                    }
+                });
+            } else {
+                fulfill({ auth: false });
+            }
+        }), function(error) {
+            fulfill({ auth: false, error: error });
+        }
+    });
 };
 
 exports.getVerify = function(req, res) {
