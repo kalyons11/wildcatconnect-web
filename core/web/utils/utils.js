@@ -322,7 +322,7 @@ module.exports.fillParamaters = function(model, ID, otherData) {
             };
         case "PollStructure":
             var result = { };
-            result.pollID = ID;
+            result.pollID = ID.toString();
             result.pollTitle = model.customModel.title;
             result.pollQuestion = model.customModel.question;
             result.pollMultipleChoices = model.customModel.finalChoices;
