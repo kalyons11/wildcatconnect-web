@@ -385,7 +385,7 @@ exports.custom = function (req, res) {
     }
     else if (path == "poll" && action == "manage" && request == "delete") {
         var query = new Parse.Query("PollStructure");
-        query.equalTo("pollID", parseInt(req.body.ID));
+        query.equalTo("pollID", req.body.ID.toString());
         query.first({
             success: function (structure) {
                 structure.destroy({
