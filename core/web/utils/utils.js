@@ -383,7 +383,7 @@ module.exports.customSaveOperation = function(model, req) {
 
 module.exports.generateParseFile = function(data, fileName, type) {
 	var fileData = Array.prototype.slice.call(data, 0);
-	var file = new Parse.File(fileName, fileData, type);
+	var file = new Parse.File(fileName, fileData);
 	return file;
 }
 

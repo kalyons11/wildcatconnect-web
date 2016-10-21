@@ -27,7 +27,7 @@
      
      self.navigationItem.title = @"Wildcat News";
     
-    if (self.loadNumber == [NSNumber numberWithInt:1] || ! self.loadNumber) {
+     if (self.loadNumber == [NSNumber numberWithInt:1] || ! self.loadNumber || true) { // Remove
                [self refreshData];
           }
           else {
@@ -375,25 +375,27 @@
      for (int i = 0; i < array.count; i++) {
           ECStructure = (NewsArticleStructure *)[array objectAtIndex:i];
           NSInteger imageInteger = [ECStructure.hasImage integerValue];
-          if (imageInteger == 1) {
+          if (imageInteger == 1 || ECStructure.imageFile != nil) {
                PFFile *file = ECStructure.imageFile;
-               [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    theError = error;
-                    UIImage *image = [UIImage imageWithData:data];
-                    image = [[AppManager getInstance] imageFromImage:image scaledToWidth:70];
-                    [theReturnArray setObject:image atIndexedSubscript:[[NSNumber numberWithInt:i] integerValue]];
-                    [theReturnDataArray setObject:data atIndexedSubscript:i];
-                        BOOL go = true;
-                        for (NSObject *object in theReturnArray) {
-                            if (object.class == [NewsArticleStructure class]) {
-                                go = false;
-                                break;
-                            }
-                        }
-                        if (go) {
-                            dispatch_group_leave(theServiceGroup);
-                        }
-               }];
+               NSString *url = file.url;
+               NSError *_Nullable __autoreleasing *error;
+               NSString* webStringURL = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+               NSURL *theURL = [NSURL URLWithString:webStringURL];
+               NSData *imageData = [NSData dataWithContentsOfURL:theURL options:NSDataReadingUncached error:error];
+               UIImage *image = [UIImage imageWithData:imageData];
+               image = [[AppManager getInstance] imageFromImage:image scaledToWidth:70];
+               [theReturnArray setObject:image atIndexedSubscript:[[NSNumber numberWithInt:i] integerValue]];
+               [theReturnDataArray setObject:imageData atIndexedSubscript:i];
+               BOOL go = true;
+               for (NSObject *object in theReturnArray) {
+                    if (object.class == [NewsArticleStructure class]) {
+                         go = false;
+                         break;
+                    }
+               }
+               if (go) {
+                    dispatch_group_leave(theServiceGroup);
+               }
           } else {
                [theReturnArray setObject:[[NSObject alloc] init] atIndexedSubscript:[[NSNumber numberWithInt:i] integerValue]];
                [theReturnDataArray setObject:[[NSData alloc] init] atIndexedSubscript:i];

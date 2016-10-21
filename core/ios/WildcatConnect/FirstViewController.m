@@ -948,6 +948,7 @@
      [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
           SchoolDayStructure *structure = (SchoolDayStructure *)object;
           PFFile *imageFile = structure.imageFile;
+          NSString *url = imageFile.url;
           [imageFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
                theError = error;
                [array addObject:data];

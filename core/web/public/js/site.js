@@ -511,8 +511,8 @@ function prettyHtml(html) {
     html = converter.makeHtml(html);
     html = html.replace(/<a href/g, '<a target="_blank" href');
     html = html.replace(/<hr/g, '<hr style="height: 5px; border-top-width: 5px; border-top-style: solid; border-top-color:#000000"');
-    /*html = linkifyHtml(html, {
+    html = linkifyHtml(html, {
         target: '_blank'
-    });*/
+    });
     return html;
 }

@@ -360,7 +360,7 @@
                 if (theNews.length > 0) {
                     var newsString = '<b><u><span style="background-color: yellow;">LATEST NEWS</span></u></b><br><br>';
                     for (var i = 0; i < theNews.length; i++) {
-                        newsString = newsString + '<b>' + theNews[i]["titleString"] + '</b> - ' + theNews[i]["authorString"] + ' - ' + theNews[i]["summaryString"] + '<br><br>';
+                        newsString = newsString + '<b>' + theNews[i]["titleString"] + '</b> - ' + theNews[i]["authorString"] + ' - ' + theNews[i]["summaryString"] + '<br><br>' + prettyHtml(theNews[i]["contentURLString"]);
                     };
                     $form.append($(newsString));
                 };
@@ -379,19 +379,19 @@
                     var commString = '<b><u><span style="background-color: yellow;">COMMUNITY SERVICE OPPORTUNITIES</span></u></b><br><br>';
                     for (var i = 0; i < theCommunity.length; i++) {
                         var comm = theCommunity[i];
-                        var string = "STARTS - " + moment(comm["startDate"]).format("dddd, MMMM d @ h:mm A") + ', ENDS - ' + moment(comm["endDate"]).format("dddd, MMMM d @ h:mm A");
+                        var start = moment(comm["startDate"].iso).format("dddd, MMMM d @ h:mm A");
+                        var end = moment(comm["endDate"].iso).format("dddd, MMMM d @ h:mm A");
+                        var string = "STARTS - " + start + ', ENDS - ' + end;
                         commString = commString + '<b>' + theCommunity[i]["commTitleString"] + "</b> - " + string + '<br>' + prettyHtml(theCommunity[i]["commSummaryString"]) + '<br>';
                     };
-                    //commString = linkifyStr(commString);
                     $form.append($(commString));
                 };
                 if (theEvents.length > 0) {
                     var eventString = '<b><u><span style="background-color: yellow;">UPCOMING EVENTS</span></u></b><br><br>';
                     for (var i = 0; i < theEvents.length; i++) {
-                        var string = moment(theEvents[i]["eventDate"]).format("dddd, MMMM d @ h:mm A");
+                        var string = moment(comm["eventDate"].iso).format("dddd, MMMM d @ h:mm A")
                         eventString = eventString + '<b>' + theEvents[i]["titleString"] + "</b> - " + string + " - " + '<br>' + prettyHtml(theEvents[i]["messageString"]) + '<br>';
                     };
-                    //commString = linkifyStr(commString);
                     $form.append($(eventString));
                 };
                 $("#loading").fadeOut();
