@@ -69,6 +69,8 @@
           [likesLabel setFont:[UIFont systemFontOfSize:16]];
           [scrollView addSubview:likesLabel];
           
+          likesButton = [[UIButton alloc] init];
+          
           NSMutableArray *liked = [[NSUserDefaults standardUserDefaults] objectForKey:@"likedNewsArticles"];
           if (liked) {
                if (! [liked containsObject:self.NA.articleID]) {
@@ -155,6 +157,9 @@
           if (image.size.width > self.view.frame.size.width - 20) {
                image = [[AppManager getInstance] imageFromImage:image scaledToWidth:self.view.frame.size.width - 20];
           }
+          if (image.size.height > self.view.frame.size.height - 300) {
+               image = [[AppManager getInstance] imageFromImage:image scaledToHeight:self.view.frame.size.height - 300];
+          }
           imageView.image = image;
           [imageView sizeToFit];
           imageView.frame = CGRectMake(self.view.frame.size.width / 2 - imageView.frame.size.width / 2, 10, imageView.frame.size.width, imageView.frame.size.height);
@@ -232,11 +237,29 @@
                height = likesLabel.frame.origin.y + likesLabel.frame.size.height + 10;
           }
           
-          UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(10, height, self.view.frame.size.width - 20, 1)];
+          UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(10, height, self.view.frame.size.width - 20, 1)];
           separator.backgroundColor = [UIColor blackColor];
           [scrollView addSubview:separator];
           
-          [scrollView addSubview:[Utils createWebViewForDelegate:self forString:self.NA.contentURLString withSeparator:separator]];
+          CGFloat x = separator.frame.origin.x;
+          CGFloat y = separator.frame.origin.y + separator.frame.size.height + 10;
+          CGFloat width = self.view.frame.size.width - 20;
+          CGFloat heightTwo = self.view.frame.size.height - 10 - (separator.frame.origin.y + separator.frame.size.height + 10);
+          
+          UIWebView *webView = [[UIWebView alloc] init];
+          webView.frame = CGRectMake(x, y, width, heightTwo);
+          x = 0;
+          y = 0;
+          width = 0;
+          heightTwo = 0;
+          NSString *html = [Utils convertHTMLString:self.NA.contentURLString];
+          [webView loadHTMLString:html baseURL:[NSURL URLWithString:@"http://"]];
+          webView.scrollView.scrollEnabled = YES;
+          [webView sizeToFit];
+          webView.delegate = self;
+          webView.dataDetectorTypes = UIDataDetectorTypeAll;
+          
+          [scrollView addSubview:webView];
           
                //Takes care of all resizing needs based on sizes.
           UIEdgeInsets adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, 150, 0);

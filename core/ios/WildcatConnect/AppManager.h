@@ -26,6 +26,7 @@
 
 + (AppManager *)getInstance;
 - (UIImage *)imageFromImage:(UIImage *)sourceImage scaledToWidth:(float)imageWidth;
+- (UIImage *)imageFromImage:(UIImage *)sourceImage scaledToHeight:(float)imageHeight;
 
 - (void)loadAllData:(NSObject *)object forViewController:(UIViewController *)viewController;
 

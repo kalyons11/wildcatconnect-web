@@ -885,6 +885,13 @@
                }
           }];
           
+          [self checkVersion:^(NSString *correctVersion, NSString *thisVersion) {
+               if (! [correctVersion isEqualToString:thisVersion]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update Needed" message:[NSString stringWithFormat:@"Please update %@ to the latest version (%@) in the App Store!", [Utils getConfigurationForKey:@"page.applicationName"], correctVersion] delegate:nil cancelButtonTitle:@"Got it!" otherButtonTitles: nil];
+                    [alert show];
+               }
+          }];
+          
      } else if ((! loadString || [loadString isEqual:@"1"] == true) && connected == false) {
           
           if (scrollView) {
@@ -902,7 +909,6 @@
           
           [self showBadImage];
      }
-     
      
 }
 
@@ -936,6 +942,37 @@
      scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
      
      [self.view addSubview:scrollView];
+}
+
+- (void)checkVersion:(void (^)(NSString *correctVersion, NSString *thisVersion))completion {
+     dispatch_group_t serviceGroup = dispatch_group_create();
+     dispatch_group_enter(serviceGroup);
+     NSError *jsonError;
+     
+     NSString *url = [Utils decrypt:[Utils getConfigurationForKey:@"configURL"]];
+     
+     NSString *webStringURL = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+     
+     NSURL *URL = [NSURL URLWithString:webStringURL];
+     
+     
+     NSString *jsonString = [[NSString alloc]
+                             initWithContentsOfURL:URL
+                             encoding:NSUTF8StringEncoding
+                             error:&jsonError];
+     NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+     
+     id allKeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONWritingPrettyPrinted error:&jsonError];
+     
+     NSString *correctVersion = [allKeys objectForKey:@"version"];
+     
+     NSString *thisVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+     
+     dispatch_group_leave(serviceGroup);
+     
+     dispatch_group_notify(serviceGroup, dispatch_get_main_queue(), ^ {
+          completion(correctVersion, thisVersion);
+     });
 }
 
 - (void)getImageDataMethodWithCompletion:(void (^)(NSError *error, NSMutableArray *returnData))completion {

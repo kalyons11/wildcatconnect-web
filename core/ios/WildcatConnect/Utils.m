@@ -102,17 +102,17 @@ static const int ddLogLevel = DDLogLevelVerbose;
 }
 
 + (NSString *)convertHTMLString:(NSString *)input {
-     NSString *html = [[MMMarkdown HTMLStringWithMarkdown:input error:nil] stringByAppendingString:@"<style>body{font-family: Helvetica Neue !important;}</style>"];
+     NSString *html = [[MMMarkdown HTMLStringWithMarkdown:input error:nil] stringByAppendingString:@"<style>body{font-family: Helvetica Neue !important;word-wrap: break-word;}</style>"];
      return html;
 }
 
 + (UIWebView *)createWebViewForDelegate:(UIViewController *)delegate forString:(NSString *)string withSeparator:(UIView *)separator {
      UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(separator.frame.origin.x, separator.frame.origin.y + separator.frame.size.height + 10, delegate.view.frame.size.width - 20, delegate.view.frame.size.height - 10 - (separator.frame.origin.y + separator.frame.size.height + 10))];
-     NSString *html = [Utils convertHTMLString:[Utils convertHTMLString:string]];
+     NSString *html = [Utils convertHTMLString:string];
      [webView loadHTMLString:html baseURL:[NSURL URLWithString:@"http://"]];
      webView.scrollView.scrollEnabled = NO;
      [webView sizeToFit];
-     [webView setDelegate:delegate];
+     webView.delegate = delegate;
      webView.dataDetectorTypes = UIDataDetectorTypeAll;
      return webView;
 }

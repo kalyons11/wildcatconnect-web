@@ -27,7 +27,7 @@
      
      self.navigationItem.title = @"Wildcat News";
     
-     if (self.loadNumber == [NSNumber numberWithInt:1] || ! self.loadNumber || true) { // Remove
+     if (self.loadNumber == [NSNumber numberWithInt:1] || ! self.loadNumber) { // Remove
                [self refreshData];
           }
           else {
@@ -318,6 +318,12 @@
           }
           [userDefaults setObject:moreItems forKey:@"newsArticleImages"];
           [userDefaults setObject:self.readNewsArticles forKey:@"readNewsArticles"];
+          NSMutableArray *theVisitedPagesArray = [userDefaults objectForKey:@"visitedPagesArray"];
+          NSMutableArray *visitedPagesArray = [[NSMutableArray alloc] init];
+          [visitedPagesArray addObjectsFromArray:theVisitedPagesArray];
+          if (! [visitedPagesArray containsObject:[NSString stringWithFormat:@"%lu", (long)0]])
+               [visitedPagesArray addObject:[NSString stringWithFormat:@"%lu", (long)0]];
+          [userDefaults setObject:visitedPagesArray forKey:@"visitedPagesArray"];
           [userDefaults synchronize];
      }
 }

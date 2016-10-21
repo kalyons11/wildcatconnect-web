@@ -58,8 +58,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
      NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
      
-     NSArray *array = [[NSArray alloc] init];
-     
      [Utils init];
      
           //TODO - Encrypt and configure all values!!!

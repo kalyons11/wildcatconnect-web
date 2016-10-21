@@ -40,6 +40,17 @@ static AppManager *instance = nil;
      return newImage;
 }
 
+- (UIImage *)imageFromImage:(UIImage *)sourceImage scaledToHeight:(float)imageHeight {
+     float oldHeight = sourceImage.size.height;
+     float scaleFactor = imageHeight / oldHeight;
+     float newWidth = sourceImage.size.width * scaleFactor;
+     float newHeight = oldHeight * scaleFactor;
+     UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+     [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+     return newImage;
+}
+
 - (void)loadUserDefaults {
      likedNewsArticles = [[NSUserDefaults standardUserDefaults] valueForKey:@"likedNewsArticles"];\
 }

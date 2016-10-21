@@ -55,6 +55,7 @@
 		0AA5C8FE1C33227200C42892 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5C8FD1C33227200C42892 /* about@2x.png */; };
 		0AA5C9041C3326BB00C42892 /* logoSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5C9031C3326BB00C42892 /* logoSmall.png */; };
 		0AAA54A51C735BAC009A7ABF /* CommunityServiceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA54A41C735BAC009A7ABF /* CommunityServiceDetailViewController.m */; };
+		0ACB5CE71DB9C2DA00DEA5B6 /* index.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ACB5CE61DB9C2DA00DEA5B6 /* index.json */; };
 		0AD53D5C1C208B4D007E5184 /* RegisterExtracurricularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD53D5B1C208B4D007E5184 /* RegisterExtracurricularViewController.m */; };
 		0AD6C0DB1C76243000A38F1F /* ECUDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6C0DA1C76243000A38F1F /* ECUDetailViewController.m */; };
 		0AD8B9C71C337D0B002A3ABB /* alerts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8B9C61C337D0B002A3ABB /* alerts@2x.png */; };
@@ -297,6 +298,7 @@
 		0AA5C9031C3326BB00C42892 /* logoSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoSmall.png; path = ../logoSmall.png; sourceTree = "<group>"; };
 		0AAA54A31C735BAC009A7ABF /* CommunityServiceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunityServiceDetailViewController.h; sourceTree = "<group>"; };
 		0AAA54A41C735BAC009A7ABF /* CommunityServiceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunityServiceDetailViewController.m; sourceTree = "<group>"; };
+		0ACB5CE61DB9C2DA00DEA5B6 /* index.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = index.json; sourceTree = "<group>"; };
 		0AD53D5A1C208B4D007E5184 /* RegisterExtracurricularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterExtracurricularViewController.h; sourceTree = "<group>"; };
 		0AD53D5B1C208B4D007E5184 /* RegisterExtracurricularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterExtracurricularViewController.m; sourceTree = "<group>"; };
 		0AD6C0D91C76243000A38F1F /* ECUDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECUDetailViewController.h; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				0ADBEE6C1C0ABD8400E946F6 /* AlertStructure.m */,
 				0ADBEECD1C0ABDE100E946F6 /* AppDelegate.h */,
 				0ADBEE5E1C0ABD8400E946F6 /* AppDelegate.m */,
+				0ACB5CE61DB9C2DA00DEA5B6 /* index.json */,
 				0A976EC01D623B53009D8E9C /* Config.plist */,
 				0ADBEECE1C0ABDE100E946F6 /* ApplicationManager.h */,
 				0ADBEEC61C0ABDE100E946F6 /* ApplicationManager.m */,
@@ -1011,6 +1014,7 @@
 				0ADBEF3C1C0AC57200E946F6 /* image.png in Resources */,
 				0ADBEEF91C0ABDFA00E946F6 /* Info.plist in Resources */,
 				0AA5C8FC1C33222400C42892 /* staffDirectory@2x.png in Resources */,
+				0ACB5CE71DB9C2DA00DEA5B6 /* index.json in Resources */,
 				0ADBEF4E1C0ACC4900E946F6 /* admin@2x.png in Resources */,
 				0ADBEE361C0ABD5E00E946F6 /* Main.storyboard in Resources */,
 				0AF2C58C1C97B01600E5D2E5 /* like@2x.png in Resources */,
@@ -1401,9 +1405,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1419,8 +1423,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b46de0d-d5c5-45f2-a6bb-f8831b302111";
-				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Development PP";
+				PROVISIONING_PROFILE = "ddc3c3fb-0876-4c3e-aecc-af3f22e7b3db";
+				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Production PP";
 			};
 			name = Debug;
 		};
@@ -1431,8 +1435,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1449,8 +1453,8 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b46de0d-d5c5-45f2-a6bb-f8831b302111";
-				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Development PP";
+				PROVISIONING_PROFILE = "ddc3c3fb-0876-4c3e-aecc-af3f22e7b3db";
+				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Production PP";
 			};
 			name = Release;
 		};

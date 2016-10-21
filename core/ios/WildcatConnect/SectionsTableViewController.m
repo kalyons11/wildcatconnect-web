@@ -449,45 +449,47 @@
                     }
                }
                else {
-                    [visitedPagesArray addObject:[NSString stringWithFormat:@"%lu", (long)indexPath.row]];
-                    [userDefaults setObject:visitedPagesArray forKey:@"visitedPagesArray"];
-                    [userDefaults synchronize];
                     if (indexPath.row == 0) {
                          NewsCenterTableViewController *controller = [[NewsCenterTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
                          [self.navigationController pushViewController:controller animated:YES];
-                    } else if (indexPath.row == 1) {
-                         ExtracurricularsTableViewController *controller = [[ExtracurricularsTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    } else if (indexPath.row == 2) {
-                         CommunityServiceTableViewController *controller = [[CommunityServiceTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    } else if (indexPath.row == 3) {
-                         EventsTableViewController *controller = [[EventsTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    }
-                    else if (indexPath.row == 4) {
-                         ScholarshipTableViewController *controller = [[ScholarshipTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    }
-                    else if (indexPath.row == 5) {
-                         StudentCenterTableViewController *controller = [[StudentCenterTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    }
-                    else if (indexPath.row == 6) {
-                         UsefulLinksTableViewController *controller = [[UsefulLinksTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    }
-                    else if (indexPath.row == 7) {
-                         StaffDirectoryMainTableViewController *controller = [[StaffDirectoryMainTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
-                         [self.navigationController pushViewController:controller animated:YES];
-                    }
-                    else if (indexPath.row == 8) {
-                         if ([PFUser currentUser]) {
-                              AdministrationMainTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"MainID"];
+                    } else {
+                         [visitedPagesArray addObject:[NSString stringWithFormat:@"%lu", (long)indexPath.row]];
+                         [userDefaults setObject:visitedPagesArray forKey:@"visitedPagesArray"];
+                         [userDefaults synchronize];
+                         if (indexPath.row == 1) {
+                              ExtracurricularsTableViewController *controller = [[ExtracurricularsTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
                               [self.navigationController pushViewController:controller animated:YES];
-                         } else {
-                              AdministrationLogInViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LogInID"];
+                         } else if (indexPath.row == 2) {
+                              CommunityServiceTableViewController *controller = [[CommunityServiceTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
                               [self.navigationController pushViewController:controller animated:YES];
+                         } else if (indexPath.row == 3) {
+                              EventsTableViewController *controller = [[EventsTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
+                              [self.navigationController pushViewController:controller animated:YES];
+                         }
+                         else if (indexPath.row == 4) {
+                              ScholarshipTableViewController *controller = [[ScholarshipTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
+                              [self.navigationController pushViewController:controller animated:YES];
+                         }
+                         else if (indexPath.row == 5) {
+                              StudentCenterTableViewController *controller = [[StudentCenterTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
+                              [self.navigationController pushViewController:controller animated:YES];
+                         }
+                         else if (indexPath.row == 6) {
+                              UsefulLinksTableViewController *controller = [[UsefulLinksTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                              [self.navigationController pushViewController:controller animated:YES];
+                         }
+                         else if (indexPath.row == 7) {
+                              StaffDirectoryMainTableViewController *controller = [[StaffDirectoryMainTableViewController alloc] initWithLoadNumber:[NSNumber numberWithInt:1]];
+                              [self.navigationController pushViewController:controller animated:YES];
+                         }
+                         else if (indexPath.row == 8) {
+                              if ([PFUser currentUser]) {
+                                   AdministrationMainTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"MainID"];
+                                   [self.navigationController pushViewController:controller animated:YES];
+                              } else {
+                                   AdministrationLogInViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LogInID"];
+                                   [self.navigationController pushViewController:controller animated:YES];
+                              }
                          }
                     }
                }
