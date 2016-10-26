@@ -234,6 +234,7 @@
      dispatch_group_enter(serviceGroup);
      __block NSError *theError;
      PFQuery *query = [CommunityServiceStructure query];
+     [query whereKey:@"isApproved" equalTo:[NSNumber numberWithInteger:1]];
      __block int count;
      [query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
           theError = error;

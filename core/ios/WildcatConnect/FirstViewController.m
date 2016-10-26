@@ -57,6 +57,7 @@
      NSInteger theInt;
      UIAlertView *av;
      UILabel *titleLabel;
+     UIAlertView *versionAlert;
 }
 
 - (void)backDoor {
@@ -84,6 +85,12 @@
                          theInt = 0;
                     }
                }];
+          }
+     } else if (actionSheet == versionAlert) {
+          if (buttonIndex == 0) {
+               NSString *downloadURL = [Utils getConfigurationForKey:@"downloadURL"];
+               NSURL *url = [NSURL URLWithString:downloadURL];
+               [[UIApplication sharedApplication] openURL:url];
           }
      }
 }
@@ -885,12 +892,19 @@
                }
           }];
           
+#ifdef DEBUG
+          
+               // Do nothing...
+#else
+          
           [self checkVersion:^(NSString *correctVersion, NSString *thisVersion) {
                if (! [correctVersion isEqualToString:thisVersion]) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update Needed" message:[NSString stringWithFormat:@"Please update %@ to the latest version (%@) in the App Store!", [Utils getConfigurationForKey:@"page.applicationName"], correctVersion] delegate:nil cancelButtonTitle:@"Got it!" otherButtonTitles: nil];
-                    [alert show];
+                    versionAlert = [[UIAlertView alloc] initWithTitle:@"Update Needed" message:[NSString stringWithFormat:@"Please update %@ to the latest version (%@) in the App Store!", [Utils getConfigurationForKey:@"page.applicationName"], correctVersion] delegate:self cancelButtonTitle:@"Update Now" otherButtonTitles: @"Later", nil];
+                    [versionAlert show];
                }
           }];
+          
+#endif
           
      } else if ((! loadString || [loadString isEqual:@"1"] == true) && connected == false) {
           
