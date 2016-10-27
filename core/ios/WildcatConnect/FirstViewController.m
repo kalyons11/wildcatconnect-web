@@ -897,12 +897,14 @@
                // Do nothing...
 #else
           
-          [self checkVersion:^(NSString *correctVersion, NSString *thisVersion) {
+               // Removing due to iOS policy.
+          
+          /*([self checkVersion:^(NSString *correctVersion, NSString *thisVersion) {
                if (! [correctVersion isEqualToString:thisVersion]) {
                     versionAlert = [[UIAlertView alloc] initWithTitle:@"Update Needed" message:[NSString stringWithFormat:@"Please update %@ to the latest version (%@) in the App Store!", [Utils getConfigurationForKey:@"page.applicationName"], correctVersion] delegate:self cancelButtonTitle:@"Update Now" otherButtonTitles: @"Later", nil];
                     [versionAlert show];
                }
-          }];
+          }];*/
           
 #endif
           

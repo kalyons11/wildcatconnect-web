@@ -1405,9 +1405,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1423,8 +1423,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b46de0d-d5c5-45f2-a6bb-f8831b302111";
-				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Development PP";
+				PROVISIONING_PROFILE = "ddc3c3fb-0876-4c3e-aecc-af3f22e7b3db";
+				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Production PP";
 			};
 			name = Debug;
 		};
@@ -1435,8 +1435,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WildcatConnect Apple (DFMXNV2T74)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1453,8 +1453,8 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b46de0d-d5c5-45f2-a6bb-f8831b302111";
-				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Development PP";
+				PROVISIONING_PROFILE = "ddc3c3fb-0876-4c3e-aecc-af3f22e7b3db";
+				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Production PP";
 			};
 			name = Release;
 		};
