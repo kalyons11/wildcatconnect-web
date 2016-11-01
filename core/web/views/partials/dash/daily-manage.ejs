@@ -181,7 +181,9 @@
 
     function loadCommunity(index) {
         var comm = community[index];
-        var string = "STARTS - " + moment(comm["startDate"]).format("dddd, MMMM d @ h:mm A") + '<br>ENDS - ' + moment(comm["endDate"]).format("dddd, MMMM d @ h:mm A");
+        var start = moment(comm["startDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
+        var end = moment(comm["endDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
+        var string = "STARTS - " + start + '<br>ENDS - ' + end;
 
         var html = comm["commSummaryString"];
 
@@ -205,7 +207,7 @@
 
     function loadEvent(index) {
         var theEvent = events[index];
-        var string = moment(theEvent["eventDate"]).format("dddd, MMMM d @ h:mm A");
+        var string = moment(theEvent["eventDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
 
         var html = theEvent["messageString"];
 
@@ -379,8 +381,8 @@
                     var commString = '<b><u><span style="background-color: yellow;">COMMUNITY SERVICE OPPORTUNITIES</span></u></b><br><br>';
                     for (var i = 0; i < theCommunity.length; i++) {
                         var comm = theCommunity[i];
-                        var start = moment(comm["startDate"].iso).format("dddd, MMMM d @ h:mm A");
-                        var end = moment(comm["endDate"].iso).format("dddd, MMMM d @ h:mm A");
+                        var start = moment(comm["startDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
+                        var end = moment(comm["endDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
                         var string = "STARTS - " + start + ', ENDS - ' + end;
                         commString = commString + '<b>' + theCommunity[i]["commTitleString"] + "</b> - " + string + '<br>' + prettyHtml(theCommunity[i]["commSummaryString"]) + '<br>';
                     };
@@ -389,8 +391,8 @@
                 if (theEvents.length > 0) {
                     var eventString = '<b><u><span style="background-color: yellow;">UPCOMING EVENTS</span></u></b><br><br>';
                     for (var i = 0; i < theEvents.length; i++) {
-                        var string = moment(comm["eventDate"].iso).format("dddd, MMMM d @ h:mm A")
-                        eventString = eventString + '<b>' + theEvents[i]["titleString"] + "</b> - " + string + " - " + '<br>' + prettyHtml(theEvents[i]["messageString"]) + '<br>';
+                        var string = moment(theEvents[i]["eventDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A")
+                        eventString = eventString + '<b>' + theEvents[i]["titleString"] + "</b> - " + string + '<br><br>' + prettyHtml(theEvents[i]["messageString"]) + '<br>';
                     };
                     $form.append($(eventString));
                 };
