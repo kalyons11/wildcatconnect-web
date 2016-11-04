@@ -204,7 +204,6 @@
 
     function loadEvent(index) {
         var theEvent = events[index];
-        var string = moment(theEvent["eventDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
 
         var html = theEvent["messageString"];
 
@@ -220,7 +219,7 @@
             title: 'Event Preview',
             message: function(dialogItself) {
                 var $form = $('<form></form>');
-                $form.append("<h1 style='margin-top:0px;'>" + theEvent["titleString"] + "</h1>" + string + "<hr style='border-color:#561838';>" + html);
+                $form.append("<h1 style='margin-top:0px;'>" + theEvent["titleString"] + "</h1><hr style='border-color:#561838';>" + html);
                 return $form;
             }
         });
@@ -385,8 +384,7 @@
                 if (theEvents.length > 0) {
                     var eventString = '<b><u><span style="background-color: yellow;">UPCOMING EVENTS</span></u></b><br><br>';
                     for (var i = 0; i < theEvents.length; i++) {
-                        var string = moment(theEvents[i]["eventDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A")
-                        eventString = eventString + '<b>' + theEvents[i]["titleString"] + "</b> - " + string + '<br><br>' + prettyHtml(theEvents[i]["messageString"]) + '<br>';
+                        eventString = eventString + '<b>' + theEvents[i]["titleString"] + "</b><br>" + prettyHtml(theEvents[i]["messageString"]) + '<br>';
                     };
                     $form.append($(eventString));
                 };
