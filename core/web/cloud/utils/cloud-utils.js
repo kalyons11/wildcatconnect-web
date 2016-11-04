@@ -196,9 +196,10 @@ module.exports.determineHomeUserType = function(model) {
     } else if (model.object.user.userType == "Administration") {
         model.object.user.isAdmin = true;
         model.object.user.isDeveloper = false;
-    } else {
+    } else if (model.object.user.userType == "Lunch Manager") {
         model.object.user.isAdmin = false;
         model.object.user.isDeveloper = false;
+        model.object.user.isLunch = true;
     }
 };
 

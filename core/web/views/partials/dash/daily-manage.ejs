@@ -181,9 +181,6 @@
 
     function loadCommunity(index) {
         var comm = community[index];
-        var start = moment(comm["startDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
-        var end = moment(comm["endDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
-        var string = "STARTS - " + start + '<br>ENDS - ' + end;
 
         var html = comm["commSummaryString"];
 
@@ -199,7 +196,7 @@
             title: 'Community Service Opportunity Preview',
             message: function(dialogItself) {
                 var $form = $('<form></form>');
-                $form.append("<h1 style='margin-top:0px;'>" + comm["commTitleString"] + "</h1>" + string + "<hr style='border-color:#561838';>" + html);
+                $form.append("<h1 style='margin-top:0px;'>" + comm["commTitleString"] + "</h1><hr style='border-color:#561838';>" + html);
                 return $form;
             }
         });
@@ -381,10 +378,7 @@
                     var commString = '<b><u><span style="background-color: yellow;">COMMUNITY SERVICE OPPORTUNITIES</span></u></b><br><br>';
                     for (var i = 0; i < theCommunity.length; i++) {
                         var comm = theCommunity[i];
-                        var start = moment(comm["startDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
-                        var end = moment(comm["endDate"].iso).format("dddd, MMMM d YYYY, @ h:mm A");
-                        var string = "STARTS - " + start + ', ENDS - ' + end;
-                        commString = commString + '<b>' + theCommunity[i]["commTitleString"] + "</b> - " + string + '<br>' + prettyHtml(theCommunity[i]["commSummaryString"]) + '<br>';
+                        commString = commString + '<b>' + theCommunity[i]["commTitleString"] + "</b><br>" + prettyHtml(theCommunity[i]["commSummaryString"]) + '<br>';
                     };
                     $form.append($(commString));
                 };

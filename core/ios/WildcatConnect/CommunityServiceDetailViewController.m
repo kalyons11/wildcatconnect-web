@@ -38,27 +38,7 @@
      [titleLabel sizeToFit];
      [scrollView addSubview:titleLabel];
      
-     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, titleLabel.frame.origin.y + titleLabel.frame.size.height + 5, self.view.frame.size.width - 20, 100)];
-     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-     [dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY @ h:mm a"];
-     NSString *dateString = [dateFormatter stringFromDate:self.CS.startDate];
-     dateLabel.text = [@"Starts - " stringByAppendingString:dateString];
-     [dateLabel setFont:[UIFont systemFontOfSize:18]];
-     dateLabel.lineBreakMode = NSLineBreakByWordWrapping;
-     dateLabel.numberOfLines = 0;
-     [dateLabel sizeToFit];
-     [scrollView addSubview:dateLabel];
-     
-     dateLabelB = [[UILabel alloc] initWithFrame:CGRectMake(10, dateLabel.frame.origin.y + dateLabel.frame.size.height + 5, self.view.frame.size.width - 20, 100)];
-     NSString *theDate = [dateFormatter stringFromDate:self.CS.endDate];
-     dateLabelB.text = [@"Ends - " stringByAppendingString:theDate];
-     [dateLabelB setFont:[UIFont systemFontOfSize:18]];
-     dateLabelB.lineBreakMode = NSLineBreakByWordWrapping;
-     dateLabelB.numberOfLines = 0;
-     [dateLabelB sizeToFit];
-     [scrollView addSubview:dateLabelB];
-     
-     UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(10, dateLabelB.frame.origin.y + dateLabelB.frame.size.height + 10, self.view.frame.size.width - 20, 1)];
+     UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(10, titleLabel.frame.origin.y + titleLabel.frame.size.height + 10, self.view.frame.size.width - 20, 1)];
      separator.backgroundColor = [UIColor blackColor];
      [scrollView addSubview:separator];
      

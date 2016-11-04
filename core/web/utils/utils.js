@@ -235,10 +235,15 @@ module.exports.determineHomeUserType = function(model) {
 	} else if (model.object.user.userType == "Administration") {
 		model.object.user.isAdmin = true;
 		model.object.user.isDeveloper = false;
-	} else {
+	} else if (model.object.user.userType == "Lunch Manager") {
 		model.object.user.isAdmin = false;
 		model.object.user.isDeveloper = false;
-	}
+        model.object.user.isLunch = true;
+	} else {
+        model.object.user.isAdmin = false;
+        model.object.user.isDeveloper = false;
+        model.object.user.isLunch = false;
+    }
 };
 
 module.exports.fillModel = function(model, data, type) {
@@ -444,11 +449,17 @@ module.exports.sendEmail = function(to, from, cc, bcc, subject, body, isHtml, re
 };
 
 module.exports.verifyPage = function(model) {
+    if (model.page.configurations.key.indexOf("settings") > -1) {
+        return true;
+    }
     if (model.object.user.isDeveloper)
         return true;
     else if (model.object.user.isAdmin) {
         var key = model.page.configurations.key;
         return key.indexOf("dev") == -1;
+    } else if (model.object.user.isLunch) {
+        var key = model.page.configurations.key;
+        return key == "food.manage";
     } else {
         // Faculty
         var key = model.page.configurations.key;

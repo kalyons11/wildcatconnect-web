@@ -248,7 +248,7 @@ exports.route = function(req, res, next) {
                         }
                     } else {
                         var myError = new ApplicationMessage();
-                        myError.message = "You do not have sufficient privileges to access this page.";
+                        myError.message = "You do not have sufficient privileges to access this page. Please contact administration if you feel you should need more priveleges.";
                         myError.isError = true;
                         if (! req.session.theErrors)
                             req.session.theErrors = new Array();
