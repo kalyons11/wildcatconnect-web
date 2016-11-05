@@ -407,6 +407,7 @@ exports.dayGenerate = function (req, res) {
                         var oldDate = object.get("schoolDate");
                         var oldDateDate =  moment(oldDate, "MM-DD-YYYY");
                         var thatDay = oldDateDate.day();
+                        utils.log('info', "One!!!", null);
                         if (thatDay === 5) {
                             var newDateDate = oldDateDate.add(3, 'days');
                             var newDate = newDateDate.format("MM-DD-YYYY");
@@ -456,6 +457,7 @@ exports.dayGenerate = function (req, res) {
                                 }
                             });
                         } else {
+                            utils.log('info', "Two!!!", null);
                             var newDateDate = oldDateDate.add(1, 'days');
                             var newDate = newDateDate.format("MM-DD-YYYY");
                             var oldType = object.get("scheduleType");
@@ -475,8 +477,10 @@ exports.dayGenerate = function (req, res) {
                             } else if (oldType.indexOf("G") > -1) {
                                 newType = "A";
                             };
+                            utils.log('info', "Three!!!", null);
                             var SchoolDayStructure = Parse.Object.extend("SchoolDayStructure");
                             var newDay = new SchoolDayStructure();
+                            utils.log('info', "Four!!!", null);
                             newDay.save({
                                 "hasImage": false,
                                 "imageString" : "None.",
@@ -494,6 +498,7 @@ exports.dayGenerate = function (req, res) {
                                 "isSnow" : 0
                             }, {
                                 success: function(savedObject) {
+                                    utils.log('info', "Five!!!", null);
                                     res.send("SUCCESS");
                                 },
                                 error: function(savedObject, error) {
