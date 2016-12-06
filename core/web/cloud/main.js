@@ -258,14 +258,37 @@ Parse.Cloud.define("channelForce", function(request, response) {
         useMasterKey: true,
         success: function(number) {
             var times = parseInt(number/1000 + 1);
+            var finalArray = new Array();
+            var theArray = ["global", "allNews", "allCS", "allPolls"];
             for (var i = 0; i < times; i++) {
                 var skip = 1000*i;
                 var queryTwo = new Parse.Query("_Installation");
                 queryTwo.skip(skip);
+                queryTwo.limit(1000);
                 queryTwo.find({
                     useMasterKey: true,
                     success: function(objects) {
-                        response.success(objects.length + " " + skip + " " + times);
+                        response.success("Complete!!!1");
+                        for (var j = 0; j < objects.length; j++) {
+                            if (objects[j].get("deviceToken") != null) {
+                                objects[j].set("channels", theArray);
+                                finalArray.add(objects[j]);
+                            }
+                        }
+                        response.success("Complete!!!2");
+                        Parse.Object.saveAll(finalArray, {
+                            useMasterKey: true,
+                            success: function(savedObjects) {
+                                if (i == times - 1)
+                                    response.success("Complete!!!3");
+                            },
+                            error: function(error) {
+                                var rawError = new Error();
+                                var x = utils.processError(error, rawError, null);
+                                utils.log('error', x.message, {"stack": x.stack, "objects": x.objects});
+                                response.error(x.message);
+                            }
+                        });
                     }, error: function(error) {
                         var rawError = new Error();
                         var x = utils.processError(error, rawError, null);
