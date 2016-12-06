@@ -251,6 +251,38 @@ Parse.Cloud.afterSave("ExtracurricularUpdateStructure", function(request) {
     };
 });
 
+Parse.Cloud.define("channelForce", function(request, response) {
+    Parse.Cloud.useMasterKey();
+    var query = new Parse.Query("_Installation");
+    query.count({
+        useMasterKey: true,
+        success: function(number) {
+            var times = parseInt(number/1000 + 1);
+            for (var i = 0; i < times; i++) {
+                var skip = 1000*i;
+                var queryTwo = new Parse.Query("_Installation");
+                queryTwo.skip(skip);
+                queryTwo.find({
+                    useMasterKey: true,
+                    success: function(objects) {
+                        response.success(objects.length + " " + skip + " " + times);
+                    }, error: function(error) {
+                        var rawError = new Error();
+                        var x = utils.processError(error, rawError, null);
+                        utils.log('error', x.message, {"stack": x.stack, "objects": x.objects});
+                        response.error(x.message);
+                    }
+                });
+            }
+        }, error: function(error) {
+            var rawError = new Error();
+            var x = utils.processError(error, rawError, null);
+            utils.log('error', x.message, {"stack": x.stack, "objects": x.objects});
+            response.error(x.message);
+        }
+    });
+});
+
 Parse.Cloud.afterDelete("ExtracurricularStructure", function(request) {
     var ID = request.object.get("extracurricularID");
     var channelString = "E" + ID.toString();

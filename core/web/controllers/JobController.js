@@ -27,6 +27,8 @@ exports.handleJob = function(req, res) {
                 return exports.dayDelete(req, res);
             case "ECUdelete":
                 return exports.ECUdelete(req, res);
+            case "channelForce":
+                return exports.channelForce(req, res);
         }
     } else {
         utils.log("error", "Forbidden access detected from IP address: " + req.connection.remoteAddress, null);
@@ -357,7 +359,7 @@ exports.alertPush = function (req, res) {
                                     });
                                 },
                                 error: function(errorTwo) {
-                                    response.error("Error.");
+                                    res.send("Error.");
                                 }
                             });
                         },
@@ -518,7 +520,7 @@ exports.dayGenerate = function (req, res) {
                     }
                 });
             } else {
-                response.success("Schedule mode does not allow generation at this time.");
+                res.send("Schedule mode does not allow generation at this time.");
             };
         },
         error: function(error) {
@@ -633,11 +635,24 @@ exports.ECUdelete = function (req, res) {
                 res.send("No updates to delete!!!");
             };
         },
-        error: function() {
+        error: function(error) {
             var rawError = new Error();
             var x = utils.processError(error, rawError, null);
             utils.log('error', x.message, {"stack": x.stack, "objects": x.objects});
             res.send(error.toString());
         }
     });
+};
+
+exports.channelForce = function(req, res) {
+    Parse.Cloud.run("channelForce", null, {
+        success: function (res) {
+            console.log(res);
+        }, error: function (error) {
+            var rawError = new Error();
+            var x = utils.processError(error, rawError, null);
+            utils.log('error', x.message, {"stack": x.stack, "objects": x.objects});
+            res.send(error.toString());
+        }
+    })
 };
