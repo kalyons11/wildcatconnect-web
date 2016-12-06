@@ -512,7 +512,7 @@ void uncaughtExceptionHandler(NSException *exception) {
      PFInstallation *currentInstallation = [PFInstallation currentInstallation];
      [currentInstallation setDeviceTokenFromData:deviceToken];
      if (currentInstallation.channels.count == 0) {
-          [currentInstallation setChannels:[NSArray arrayWithObject:@"global"]];
+          [currentInstallation setChannels:[NSArray arrayWithObjects:@"global", @"allNews", @"allCS", @"allPolls", nil]];
      }
      [currentInstallation saveInBackground];
 }
