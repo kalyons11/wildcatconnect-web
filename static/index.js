@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 app.get("/:filename", function(req, res, next) {
   var filename = req.params.filename;
   try {
-    res.sendfile('/' + filename);
+    res.sendFile('/' + filename);
   } catch (e) {
     console.log(e);
     next();
