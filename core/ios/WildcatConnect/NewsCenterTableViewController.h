@@ -16,6 +16,7 @@
      NewsArticleStructure *newsArticleSelected;
      NSMutableArray *readNewsArticles;
      NSMutableArray *dataArray;
+     NSMutableArray *imageURLArray;
 }
 
 @property (nonatomic, retain) NSMutableArray *newsArticles;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) NewsArticleStructure *newsArticleSelected;
 @property (nonatomic, retain) NSMutableArray *readNewsArticles;
 @property (nonatomic, retain) NSMutableArray *dataArray;
+@property (nonatomic, retain) NSMutableArray *imageURLArray;
 
 - (instancetype)initWithLoadNumber:(NSNumber *)theLoadNumber;
 - (void)replaceNewsArticleStructure:(NewsArticleStructure *)newsArticleStructure;

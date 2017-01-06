@@ -143,6 +143,7 @@
 		0ADBEF461C0AC57200E946F6 /* unread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADBEF341C0AC57200E946F6 /* unread@2x.png */; };
 		0ADBEF4C1C0AC61F00E946F6 /* AlertsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBEF4B1C0AC61F00E946F6 /* AlertsTableViewController.m */; };
 		0ADBEF4E1C0ACC4900E946F6 /* admin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADBEF4D1C0ACC4900E946F6 /* admin@2x.png */; };
+		0ADE79EB1E1F49970096AEA2 /* GGFullScreenImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE79EA1E1F49970096AEA2 /* GGFullScreenImageViewController.m */; };
 		0AEE8AF01C72D95900959533 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEE8AEF1C72D95900959533 /* GroupDetailViewController.m */; };
 		0AF2C58C1C97B01600E5D2E5 /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AF2C58B1C97B01600E5D2E5 /* like@2x.png */; };
 		0AF2C58E1C97B3E400E5D2E5 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AF2C58D1C97B3E400E5D2E5 /* done@2x.png */; };
@@ -441,6 +442,8 @@
 		0ADBEF4A1C0AC61F00E946F6 /* AlertsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsTableViewController.h; sourceTree = "<group>"; };
 		0ADBEF4B1C0AC61F00E946F6 /* AlertsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsTableViewController.m; sourceTree = "<group>"; };
 		0ADBEF4D1C0ACC4900E946F6 /* admin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "admin@2x.png"; sourceTree = "<group>"; };
+		0ADE79E91E1F49970096AEA2 /* GGFullScreenImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFullScreenImageViewController.h; sourceTree = "<group>"; };
+		0ADE79EA1E1F49970096AEA2 /* GGFullScreenImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFullScreenImageViewController.m; sourceTree = "<group>"; };
 		0AEE8AEE1C72D95900959533 /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
 		0AEE8AEF1C72D95900959533 /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
 		0AF21F0C1D9FE03000CF9E57 /* WildcatConnect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WildcatConnect.entitlements; sourceTree = "<group>"; };
@@ -652,6 +655,8 @@
 				0ADBEF231C0AC24400E946F6 /* FirstViewController.h */,
 				0ADBEE6A1C0ABD8400E946F6 /* FirstViewController.m */,
 				0A634C6F1C5159C300210D33 /* GroupBaseTableViewController.h */,
+				0ADE79E91E1F49970096AEA2 /* GGFullScreenImageViewController.h */,
+				0ADE79EA1E1F49970096AEA2 /* GGFullScreenImageViewController.m */,
 				0A634C701C5159C300210D33 /* GroupBaseTableViewController.m */,
 				0AEE8AEE1C72D95900959533 /* GroupDetailViewController.h */,
 				0AEE8AEF1C72D95900959533 /* GroupDetailViewController.m */,
@@ -901,6 +906,7 @@
 					0ADBEE241C0ABD5E00E946F6 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 89REZXH8V7;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1185,6 +1191,7 @@
 				0AA5C8EC1C331E7B00C42892 /* CapstoneViewController.m in Sources */,
 				0A634C711C5159C300210D33 /* GroupBaseTableViewController.m in Sources */,
 				0ADBEE941C0ABD8400E946F6 /* CommunityServiceTableViewController.m in Sources */,
+				0ADE79EB1E1F49970096AEA2 /* GGFullScreenImageViewController.m in Sources */,
 				0A976F631D68BF6F009D8E9C /* MMGenerator.m in Sources */,
 				0ADBEE961C0ABD8400E946F6 /* CommunityServiceStructure.m in Sources */,
 				0ADBEE9D1C0ABD8400E946F6 /* EditMessagesViewController.m in Sources */,
@@ -1407,7 +1414,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1436,7 +1443,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

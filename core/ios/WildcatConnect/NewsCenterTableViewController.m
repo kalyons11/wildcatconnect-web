@@ -184,6 +184,8 @@
           if (i == theArrayToSearch.count - 1)
                dispatch_group_leave(serviceGroup);
      }
+     NSMutableArray *test = [[NSUserDefaults standardUserDefaults] objectForKey:@"imageURLArray"];
+     self.imageURLArray = [test mutableCopy];
      if (theArrayToSearch.count == 0) {
           dispatch_group_leave(serviceGroup);
      }
@@ -199,7 +201,7 @@
      UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activity];
      self.navigationItem.rightBarButtonItem = barButtonItem;
      [activity startAnimating];
-     [self testMethodWithCompletion:^(NSError *error, NSMutableArray *returnArrayA) {
+     [self testMethodWithCompletion:^(NSError *error, NSMutableArray *returnArrayA, NSMutableArray *imageURLArrayB) {
           if (error) {
                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Error fetching data from server. Please try again." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
                [alertView show];
@@ -210,6 +212,7 @@
                });
           } else {
                self.newsArticles = returnArrayA;
+               self.imageURLArray = imageURLArrayB;
                [self removeOldArrayObjectsWithCompletion:^(NSUInteger integer) {
                     NSMutableArray *itemsToSave = [NSMutableArray array];
                     for (NewsArticleStructure *n in returnArrayA) {
@@ -234,6 +237,7 @@
                     }
                     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                     [userDefaults setObject:itemsToSave forKey:@"newsArticles"];
+                    [userDefaults setObject:imageURLArrayB forKey:@"imageURLArray"];
                     NSMutableArray *readArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"readNewsArticles"];
                     if (! readArray) {
                          self.readNewsArticles = [NSMutableArray array];
@@ -324,6 +328,7 @@
           if (! [visitedPagesArray containsObject:[NSString stringWithFormat:@"%lu", (long)0]])
                [visitedPagesArray addObject:[NSString stringWithFormat:@"%lu", (long)0]];
           [userDefaults setObject:visitedPagesArray forKey:@"visitedPagesArray"];
+          [userDefaults setObject:self.imageURLArray forKey:@"imageURLArray"];
           [userDefaults synchronize];
      }
 }
@@ -345,7 +350,7 @@
      [self.tableView reloadData];
 }
 
-- (void)testMethodWithCompletion:(void (^)(NSError *error, NSMutableArray *returnArray))completion {
+- (void)testMethodWithCompletion:(void (^)(NSError *error, NSMutableArray *returnArray, NSMutableArray *imageURLArray))completion {
           //Define errors to be processed when everything is complete.
           //One error per service; in this example we'll have two
      __block NSError *firstError = nil;
@@ -354,12 +359,20 @@
           //Start the first service
      dispatch_group_enter(serviceGroup);
       NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+     NSMutableArray *imageURLArrayB = [[NSMutableArray alloc] init];
      PFQuery *query = [NewsArticleStructure query];
      [query whereKey:@"isApproved" equalTo:[NSNumber numberWithInteger:1]];
      [query orderByDescending:@"articleID"];
      query.limit = 25;
      [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
           [returnArray addObjectsFromArray:objects];
+          for (PFObject *o in objects) {
+               PFFile *f = [o objectForKey:@"imageFile"];
+               if (f != nil)
+                    [imageURLArrayB addObject:f.url];
+               else
+                    [imageURLArrayB addObject:@""];
+          }
           firstError = error;
           dispatch_group_leave(serviceGroup);
      }];
@@ -367,7 +380,7 @@
           NSError *overallError = nil;
           if (firstError)
                overallError = firstError;
-          completion(overallError, returnArray);
+          completion(overallError, returnArray, imageURLArrayB);
      });
 }
 
@@ -501,6 +514,7 @@
           self.newsArticleSelected = self.newsArticles[indexPath.row];
           NewsArticleDetailViewController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"NADetail"];
           controller.NA = self.newsArticleSelected;
+          controller.imageURL = [self.imageURLArray objectAtIndex:indexPath.row];
           if (self.dataArray.count > 0) {
                controller.imageData = self.dataArray[indexPath.row];
           }

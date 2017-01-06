@@ -10,6 +10,7 @@
 #import "NewsCenterTableViewController.h"
 #import "AppManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GGFullScreenImageViewController.h"
 
 @interface NewsArticleDetailViewController ()
 
@@ -22,6 +23,7 @@
      UIActivityIndicatorView *activity;
      UIScrollView *scrollView;
      UILabel *authorDateLabel;
+     UIImageView *imageView;
 }
 
 - (void)viewDidLoad {
@@ -142,7 +144,7 @@
                [scrollView addSubview:likesLabel];
                
                [self viewMethodWithCompletion:^(NSUInteger integer, NSError *error) {
-                    [activity stopAnimating];
+                         //[activity stopAnimating];
                     if (self.showCloseButton == true) {
                          UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(dismissModalViewControllerAnimated:)];
                          self.navigationItem.rightBarButtonItem = barButtonItem;
@@ -152,7 +154,8 @@
           } forID:self.NA.objectId];
           
      } else {
-          UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, 100)];
+          
+          imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, 100)];
           UIImage *image = [UIImage imageWithData:self.imageData];
           if (image.size.width > self.view.frame.size.width - 20) {
                image = [[AppManager getInstance] imageFromImage:image scaledToWidth:self.view.frame.size.width - 20];
@@ -162,21 +165,41 @@
           }
           imageView.image = image;
           [imageView sizeToFit];
+          
+          UITapGestureRecognizer *newTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myTapMethod)];
+          
+          [imageView setUserInteractionEnabled:YES];
+          
+          [imageView addGestureRecognizer:newTap];
+          
           imageView.frame = CGRectMake(self.view.frame.size.width / 2 - imageView.frame.size.width / 2, 10, imageView.frame.size.width, imageView.frame.size.height);
+          
           [scrollView addSubview:imageView];
           
-          titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, imageView.frame.origin.y + imageView.frame.size.height + 10, self.view.frame.size.width - 20, 100)];
+          UILabel *zoomLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, imageView.frame.origin.y + imageView.frame.size.height + 5, self.view.frame.size.width - 20, 100)];
+          zoomLabel.text = @"Tap image to enlarge and zoom.";
+          zoomLabel.textColor = [UIColor redColor];
+          UIFont *font = [UIFont systemFontOfSize:12];
+          [zoomLabel setFont:[UIFont fontWithDescriptor:[[font fontDescriptor] fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitItalic] size:font.pointSize]];
+          zoomLabel.lineBreakMode = NSLineBreakByWordWrapping;
+          zoomLabel.numberOfLines = 0;
+          [zoomLabel sizeToFit];
+          zoomLabel.frame = CGRectMake(self.view.frame.size.width / 2 - zoomLabel.frame.size.width / 2, zoomLabel.frame.origin.y, zoomLabel.frame.size.width, zoomLabel.frame.size.height);
+          [scrollView addSubview:zoomLabel];
+          
+          titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, zoomLabel.frame.origin.y + zoomLabel.frame.size.height + 5, self.view.frame.size.width - 20, 100)];
           titleLabel.text = self.NA.titleString;
           [titleLabel setFont:[UIFont systemFontOfSize:24]];
           titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
           titleLabel.numberOfLines = 0;
           [titleLabel sizeToFit];
+          
           [scrollView addSubview:titleLabel];
           
           UILabel *summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y + titleLabel.frame.size.height + 10, self.view.frame.size.width - 20, 100)];
           summaryLabel.text = self.NA.summaryString;
-          UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:16];
-          [summaryLabel setFont:[UIFont fontWithDescriptor:[[font fontDescriptor] fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitItalic] size:font.pointSize]];
+          UIFont *fontTwo = [UIFont fontWithName:@"Helvetica Neue" size:16];
+          [summaryLabel setFont:[UIFont fontWithDescriptor:[[fontTwo fontDescriptor] fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitItalic] size:fontTwo.pointSize]];
           summaryLabel.lineBreakMode = NSLineBreakByWordWrapping;
           summaryLabel.numberOfLines = 0;
           [summaryLabel sizeToFit];
@@ -295,6 +318,47 @@
                } forID:self.NA.objectId];
                
           } forID:self.NA.objectId];
+     }
+}
+
+- (void)clickMethodWithCompletion:(void (^)(NSData *data, NSError *error))completion  {
+     dispatch_group_t serviceGroup = dispatch_group_create();
+     dispatch_group_enter(serviceGroup);
+     NSError *error;
+     NSString* webStringURL = [self.imageURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+     NSURL *theURL = [NSURL URLWithString:webStringURL];
+     NSData *imageData = [NSData dataWithContentsOfURL:theURL options:NSDataReadingUncached error:&error];
+     dispatch_group_leave(serviceGroup);
+     dispatch_group_notify(serviceGroup, dispatch_get_main_queue(), ^ {
+          NSError *overallError = nil;
+          if (error != nil) {
+               overallError = error;
+          }
+          completion(imageData, overallError);
+     });
+}
+
+
+-(void)myTapMethod{
+     if (self.imageURL != nil && ! [self.imageURL isEqualToString:@""]) {
+          activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+          [activity setBackgroundColor:[UIColor clearColor]];
+          [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+          UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activity];
+          self.navigationItem.rightBarButtonItem = barButtonItem;
+          [activity startAnimating];
+          [self clickMethodWithCompletion:^(NSData *data, NSError *error) {
+               if (error == nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^ {
+                         GGFullscreenImageViewController *vc = [[GGFullscreenImageViewController alloc] init];
+                         UIImage *image = [UIImage imageWithData:data];
+                         vc.liftedImageView = [[UIImageView alloc] initWithImage:image];
+                         [activity stopAnimating];
+                         [self presentViewController:vc animated:YES completion:nil];
+                    });
+               }
+          }];
+          
      }
 }
 
@@ -432,7 +496,7 @@
      [likesLabel sizeToFit];
      likesLabel.frame = CGRectMake(10, authorDateLabel.frame.origin.y + authorDateLabel.frame.size.height + 10, likesLabel.frame.size.width, likesLabel.frame.size.height);
      [scrollView addSubview:likesLabel];
-     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+     activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
      [activity setBackgroundColor:[UIColor clearColor]];
      [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
      UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activity];
