@@ -6,6 +6,8 @@ var Promise = require('promise');
 var Models = require('../models/models');
 var LINQ = require('node-linq').LINQ;
 var crypto = require('cryptlib');
+var getURLs = require('get-urls');
+var uuid = require('uuid');
 
 var iv = "_sbSmKUxVQAQ-hvQ"; //16 bytes = 128 bit
 var key = "1bf6bf65e45b55825b1919cbadd028e6";
@@ -46,6 +48,8 @@ module.exports.linqForKeyValuePair = function(objects, key, value, isParse) {
     return result;
 };
 
+/**/
+
 global.config = module.exports.decryptObject(global.config);
 
 var config = global.config;
@@ -63,6 +67,8 @@ winston.add(winston.transports.Loggly, {
     tags: [nodeTag],
     json: true
 });
+
+/**/
 
 //endregion
 
