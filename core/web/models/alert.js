@@ -40,7 +40,7 @@ alertSchema.methods.validateData = function(data) {
             result = false;
             return { result: result , message: message, model: this };
         }
-        this.dateString = time.format("dddd, MMMM Do @ h:mm A");
+        this.dateString = time.local().format("dddd, MMMM Do @ h:mm A");
     } else {
         this.dateString = moment().local().format("dddd, MMMM Do @ h:mm A");
     }
