@@ -1,4 +1,4 @@
-# main
+# WildcatConnect
 Main WildcatConnect repository.
 
 Access our website at https://wildcatconnect.com.
