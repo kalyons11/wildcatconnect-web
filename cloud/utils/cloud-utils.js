@@ -41,14 +41,14 @@ var Mailgun = require('mailgun-js')({ apiKey: module.exports.decrypt(config.mail
 var logglyToken = module.exports.decrypt(config.logglyToken);
 var logglySubdomain = config.logglySubdomain;
 var nodeTag = config.nodeTag;
-require('winston-loggly');
+// require('winston-loggly');
 
-winston.add(winston.transports.Loggly, {
-    token: logglyToken,
-    subdomain: logglySubdomain,
-    tags: [nodeTag],
-    json: true
-});
+// winston.add(winston.transports.Loggly, {
+//     token: logglyToken,
+//     subdomain: logglySubdomain,
+//     tags: [nodeTag],
+//     json: true
+// });
 
 //endregion
 
