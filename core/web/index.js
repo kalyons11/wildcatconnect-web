@@ -153,7 +153,7 @@ try {
     var port = process.env.PORT || 5000;
     var httpServer = require('http').createServer(app);
     httpServer.listen(port, function () {
-        console.log('Began client on port ' + port + '.', null);
+        console.log('Began client on port ' + port + '.');
     });
 
 } catch(e) {
