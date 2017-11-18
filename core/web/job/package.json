@@ -1,0 +1,24 @@
+{
+  "name": "job",
+  "version": "1.0.0",
+  "description": "WildcatConnect job service.",
+  "main": "index.js",
+  "dependencies": {
+    "node-dir": "^0.1.17",
+    "node-schedule": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalyons11/wildcatconnect.git"
+  },
+  "author": "Kevin Lyons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kalyons11/wildcatconnect/issues"
+  },
+  "homepage": "https://wildcatconnect.com"
+}

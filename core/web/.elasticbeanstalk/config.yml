@@ -1,0 +1,11 @@
+branch-defaults:
+  default:
+    environment: web-git-dev-1
+    group_suffix: null
+global:
+  application_name: web-git
+  default_ec2_keyname: test-key-pair
+  default_platform: Node.js
+  default_region: us-west-2
+  profile: eb-cli-wc-core-prod
+  sc: null
