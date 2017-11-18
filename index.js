@@ -4,7 +4,7 @@ try {
 
     "use strict";
 
-// Modules configuration.
+    // Modules configuration.
 
     var express = require('express');
     var ParseServer = require('parse-server').ParseServer;
@@ -24,7 +24,7 @@ try {
     var cors = require('cors');
     var config = global.config;
 
-// Uncaught exceptions.
+    // Uncaught exceptions.
 
     process.on('uncaughtException', function (error) {
         console.log(error);
@@ -33,7 +33,7 @@ try {
         utils.log('error', x.message, {"stack": x.stack, "objects": x.objects});
     });
 
-// Variables configuration.
+    // Variables configuration.
 
     var appId = utils.decrypt(config.appId);
     var masterKey = utils.decrypt(config.masterKey);
@@ -48,8 +48,9 @@ try {
     var bundle = config.bundle;
     var certPath = utils.decrypt(config.certPath);
     var devCertPath = utils.decrypt(config.devCertPath);
+    var certPass = utils.decrypt(config.certPass);
 
-    // TODO: Fix mail.
+
     var SimpleMailgunAdapter = require('./utils/SimpleMailgunAdapter');
     var simpleMailgunAdapter = new SimpleMailgunAdapter({
         apiKey: mailgunKey,
@@ -57,7 +58,7 @@ try {
         fromAddress: 'team@wildcatconnect.com'
     });
 
-// Parse Server configuration.
+    // Parse Server configuration.
 
     var api = new ParseServer({
         databaseURI: databaseUri,
@@ -72,19 +73,23 @@ try {
             awsAccessKey,
             awsSecretKey,
             awsBucketName,
-            {directAccess: true}
+            {
+                directAccess: true
+            }
         ),
         push: {
             ios: [
                 {
                     pfx: certPath,
                     bundleId: bundle,
-                    production: true
+                    production: true,
+                    passphrase: certPass
                 },
                 {
                     pfx: devCertPath,
                     bundleId: bundle,
-                    production: false
+                    production: false,
+                    passphrase: certPass
                 }
             ]
         }
@@ -93,23 +98,23 @@ try {
     Parse.initialize(appId, masterKey);
     Parse.serverURL = serverURL;
 
-// Express app configuration.
+    // Express app configuration.
 
     var app = express();
 
     app.use(busboy());
     app.use(bodyParser.json());
 
-// Session configuration.
+    // Session configuration.
 
     app.use(cookieParser());
     app.use(session({secret: secret, resave: true, saveUninitialized: true}));
 
-// Serve static assets from the /public folder
+    // Serve static assets from the /public folder
 
     app.use(express.static('public'));
 
-// Handle local variables...
+    // Handle local variables...
 
     app.use(cors());
 
@@ -118,12 +123,12 @@ try {
         next();
     });
 
-// Serve the Parse API on the /Parse URL prefix
+    // Serve the Parse API on the /Parse URL prefix
 
     var mountPath = config.parseMount;
     app.use(mountPath, api);
 
-// Configure routing
+    // Configure routing
 
     app.use(bodyParser.urlencoded({extended: true}));
 
@@ -149,7 +154,7 @@ try {
     app.set('views', __dirname + '/views/pages');
     app.set('view engine', 'ejs');
 
-// HTTP configuration.
+    // HTTP configuration.
 
     var port = process.env.PORT || 5000;
     var httpServer = require('http').createServer(app);
