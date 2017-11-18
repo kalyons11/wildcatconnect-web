@@ -1,9 +1,0 @@
-Useful links can go here...
-
-Amazon configurations...
-
-http://docs.aws.amazon.com/gettingstarted/latest/wah-linux/awsgsg-wah-linux.pdf
-
-Hello World
-
-Testing new service hook...
