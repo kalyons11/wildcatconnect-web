@@ -49,6 +49,7 @@ try {
     var certPath = utils.decrypt(config.certPath);
     var devCertPath = utils.decrypt(config.devCertPath);
 
+    // TODO: Fix mail.
     var SimpleMailgunAdapter = require('./utils/SimpleMailgunAdapter');
     var simpleMailgunAdapter = new SimpleMailgunAdapter({
         apiKey: mailgunKey,
@@ -77,12 +78,12 @@ try {
             ios: [
                 {
                     pfx: certPath,
-                    bundleId: bundle,
+                    topic: bundle,
                     production: true
                 },
                 {
                     pfx: devCertPath,
-                    bundleId: bundle,
+                    topic: bundle,
                     production: false
                 }
             ]
