@@ -23,11 +23,13 @@ module.exports.encryptObject = function (object) {
 };
 
 module.exports.decrypt = function(string) {
+    console.log(key, iv, '***');
     var dec = crypto.decrypt(string, key, iv);
     return dec;
 };
 
 module.exports.decryptObject = function (string) {
+    console.log(key, iv, '***');
     var dec = crypto.decrypt(string, key, iv);
     return JSON.parse(dec);
 };

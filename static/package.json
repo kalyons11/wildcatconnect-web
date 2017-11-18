@@ -17,7 +17,6 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": ">=4.3",
-    "npm": ">=2.15.5"
+    "node": "8.4.0"
   }
 }
