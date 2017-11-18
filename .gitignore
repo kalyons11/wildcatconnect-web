@@ -57,7 +57,7 @@ core/ios/DerivedData
 
 core/ios/WildcatConnect.xcworkspace/*
 
-secure/*
+common/secure
 !core/web/secure/
 
 common/libraries/
