@@ -62,3 +62,6 @@ secure/
 common/libraries/
 
 core/ios/LogglyLogger-CocoaLumberjack
+
+# Don't care about the package-lock
+package-lock.json

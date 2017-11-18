@@ -302,7 +302,7 @@ exports.custom = function (req, res) {
                 if (user.get("userType") === "Administration" || user.get("userType") === "Developer") {
                     //
                 } else {
-                    query.containedIn("extracurricularID", req.session.user["ownedEC"]); // TODO
+                    query.containedIn("extracurricularID", req.session.user["ownedEC"]);
                 };
                 query.find({
                     success: function (structures) {
@@ -499,7 +499,6 @@ exports.custom = function (req, res) {
         var html = ejs.render(templateContent, { model: model });
         var email = req.body.email;
         var adminMailString = req.body.admin + "<" + req.body.adminMail + ">";
-        // TODO - Configure these values.
         var subject = config.page.newsStructure + " Denial";
         utils.sendEmail(email, config.page.teamMailString, null, null, subject, html, true, res);
         utils.sendEmail(adminMailString, config.page.teamMailString, null, null, subject, html, true, res);
@@ -589,7 +588,6 @@ exports.custom = function (req, res) {
         var html = ejs.render(templateContent, { model: model });
         var email = req.body.email;
         var adminMailString = req.body.admin + "<" + req.body.adminMail + ">";
-        // TODO - Configure these values.
         utils.sendEmail(email, config.page.teamMailString, null, null, "Event Denial", html, true, res);
         utils.sendEmail(adminMailString, config.page.teamMailString, null, null, "Event Denial", html, true, res);
         var query = new Parse.Query("EventStructure");
@@ -678,7 +676,6 @@ exports.custom = function (req, res) {
         var html = ejs.render(templateContent, { model: model });
         var email = req.body.email;
         var adminMailString = req.body.admin + "<" + req.body.adminMail + ">";
-        // TODO - Configure these values.
         utils.sendEmail(email, config.page.teamMailString, null, null, "Community Service Denial", html, true, res);
         utils.sendEmail(adminMailString, config.page.teamMailString, null, null, "Community Service Denial", html, true, res);
         var query = new Parse.Query("CommunityServiceStructure");

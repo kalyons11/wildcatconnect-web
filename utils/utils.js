@@ -48,8 +48,6 @@ module.exports.linqForKeyValuePair = function(objects, key, value, isParse) {
     return result;
 };
 
-/**/
-
 global.config = module.exports.decryptObject(global.config);
 
 var config = global.config;
@@ -67,8 +65,6 @@ winston.add(winston.transports.Loggly, {
     tags: [nodeTag],
     json: true
 });
-
-/**/
 
 //endregion
 
@@ -155,7 +151,7 @@ module.exports.replaceAll = function(string, old, theNew) {
 	/*
 	 * replaceAll
 	 *
-	 * Replaces all occurances of "old" with "theNew" in "string".
+	 * Replaces all instances of "old" with "theNew" in "string".
 	 *
 	 * @param string (String) - The string undergoing editing here.
 	 * @param old (String) - The string that will be replaced.
@@ -163,7 +159,7 @@ module.exports.replaceAll = function(string, old, theNew) {
 	 * 
 	 * @return (String) - Final modified string.
 	 */
-	return string.replace(/old/g, theNew);
+	return string.replace(new RegExp(old, 'g'), theNew);
 };
 
 module.exports.removeLineBreaks = function(string) {
@@ -416,7 +412,7 @@ module.exports.validatePassword = function(password) {
 		return { result: result , message: message, model: this };
 	}
 	test = password.indexOf(" ");
-	if (! test) {
+	if (test > -1) {
 		message = "Password cannot contain any spaces.";
 		result = false;
 		return { result: result , message: message, model: this };

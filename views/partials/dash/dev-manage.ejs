@@ -148,7 +148,7 @@
 
                                             success: function(response) {
                                                 if (response["res"] == "SUCCESS") {
-                                                    loadPage("Successfully deactivated application."); // TODO
+                                                    loadPage("Successfully deactivated application.");
                                                     $("#loading").fadeOut();
                                                 } else {
                                                     setMessage("Unable to deactivate application. Please try to reload the page.", true);
@@ -180,7 +180,7 @@
 
                 success: function(response){
                     if (response["res"] == "SUCCESS") {
-                        loadPage("Successfully activated application."); // TODO
+                        loadPage("Successfully activated application.");
                         $("#loading").fadeOut();
                     } else {
                         setMessage("Unable to reactivate application. Please try to reload the page.", true);
