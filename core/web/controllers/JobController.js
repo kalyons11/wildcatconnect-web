@@ -2,6 +2,7 @@ var utils = require('../utils/utils');
 var moment = require('moment');
 
 exports.handleJob = function(req, res) {
+   console.log(req.params, '****');
    if (req.body.secret == utils.decrypt(global.config.jobSecret)) {
         var name = req.params.name;
         switch (name) {
@@ -400,7 +401,7 @@ exports.dayGenerate = function (req, res) {
     query.first({
         success: function(object) {
             var date = new Date();
-            if (object.get("value") === "NORMAL" && date.getDay() != 0 && date.getDay() != 6) {
+            if (object.get("value") === "NORMAL") { // Made change to allow for custom routing/jobbing
                 var query = new Parse.Query("SchoolDayStructure");
                 query.descending("schoolDayID");
                 query.first({

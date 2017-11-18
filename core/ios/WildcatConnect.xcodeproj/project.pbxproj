@@ -122,7 +122,6 @@
 		0ADBEF071C0AC13800E946F6 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF061C0AC13800E946F6 /* libstdc++.6.tbd */; };
 		0ADBEF091C0AC14200E946F6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF081C0AC14200E946F6 /* SystemConfiguration.framework */; };
 		0ADBEF0B1C0AC14D00E946F6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF0A1C0AC14D00E946F6 /* StoreKit.framework */; };
-		0ADBEF0D1C0AC15400E946F6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF0C1C0AC15400E946F6 /* Security.framework */; };
 		0ADBEF0F1C0AC15A00E946F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF0E1C0AC15A00E946F6 /* QuartzCore.framework */; };
 		0ADBEF111C0AC15F00E946F6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF101C0AC15F00E946F6 /* Accounts.framework */; };
 		0ADBEF131C0AC16600E946F6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADBEF121C0AC16600E946F6 /* Social.framework */; };
@@ -418,7 +417,6 @@
 		0ADBEF061C0AC13800E946F6 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		0ADBEF081C0AC14200E946F6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0ADBEF0A1C0AC14D00E946F6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		0ADBEF0C1C0AC15400E946F6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0ADBEF0E1C0AC15A00E946F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0ADBEF101C0AC15F00E946F6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		0ADBEF121C0AC16600E946F6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -476,7 +474,6 @@
 				0ADBEF0F1C0AC15A00E946F6 /* QuartzCore.framework in Frameworks */,
 				0ADBEF131C0AC16600E946F6 /* Social.framework in Frameworks */,
 				0ADBEF111C0AC15F00E946F6 /* Accounts.framework in Frameworks */,
-				0ADBEF0D1C0AC15400E946F6 /* Security.framework in Frameworks */,
 				0ADBEF0B1C0AC14D00E946F6 /* StoreKit.framework in Frameworks */,
 				0ADBEF091C0AC14200E946F6 /* SystemConfiguration.framework in Frameworks */,
 				0ADBEF071C0AC13800E946F6 /* libstdc++.6.tbd in Frameworks */,
@@ -535,7 +532,6 @@
 				0ADBEF061C0AC13800E946F6 /* libstdc++.6.tbd */,
 				0ADBEE261C0ABD5E00E946F6 /* Products */,
 				0ADBEF0E1C0AC15A00E946F6 /* QuartzCore.framework */,
-				0ADBEF0C1C0AC15400E946F6 /* Security.framework */,
 				0ADBEF121C0AC16600E946F6 /* Social.framework */,
 				0ADBEF0A1C0AC14D00E946F6 /* StoreKit.framework */,
 				0ADBEF081C0AC14200E946F6 /* SystemConfiguration.framework */,
@@ -1414,7 +1410,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildcatConnect/WildcatConnect.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Kevin Lyons (89REZXH8V7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 89REZXH8V7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1430,8 +1426,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.WildcatConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ddc3c3fb-0876-4c3e-aecc-af3f22e7b3db";
-				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Production PP";
+				PROVISIONING_PROFILE = "2d99dc3f-b8a7-4704-a62c-cf81a866c09d";
+				PROVISIONING_PROFILE_SPECIFIER = "WildcatConnect Development PP";
 			};
 			name = Debug;
 		};

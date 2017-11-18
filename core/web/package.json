@@ -1,11 +1,11 @@
 {
-  "name": "parse-server-example",
-  "version": "1.4.0",
-  "description": "An example Parse API server using the parse-server module",
+  "name": "wildcatconnect-web-core",
+  "version": "1.1.0",
+  "description": "WildcatConnect core web application.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ParsePlatform/parse-server-example"
+    "url": "https://github.com/kalyons11/wildcatconnect"
   },
   "license": "MIT",
   "dependencies": {
@@ -47,7 +47,6 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": ">=4.3",
-    "npm": ">=2.15.5"
+    "node": "8.4.0"
   }
 }
