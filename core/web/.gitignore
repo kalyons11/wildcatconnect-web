@@ -57,12 +57,8 @@ core/ios/DerivedData
 
 core/ios/WildcatConnect.xcworkspace/*
 
-common/secure
-!core/web/secure/
+secure/
 
 common/libraries/
 
 core/ios/LogglyLogger-CocoaLumberjack
-
-# Don't care about the package-lock
-package-lock.json
