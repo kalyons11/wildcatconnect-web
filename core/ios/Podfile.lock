@@ -18,7 +18,6 @@ PODS:
   - LogglyLogger-CocoaLumberjack/Logger (2.3.1):
     - CocoaLumberjack (~> 2.0)
   - MGMushParser (1.2.1)
-  - RNCryptor (3.0.1)
 
 DEPENDENCIES:
   - AttributedMarkdown (from `https://github.com/dreamwieber/AttributedMarkdown.git`)
@@ -26,7 +25,6 @@ DEPENDENCIES:
   - CommonCrypto
   - LogglyLogger-CocoaLumberjack
   - MGMushParser
-  - RNCryptor
 
 EXTERNAL SOURCES:
   AttributedMarkdown:
@@ -43,8 +41,7 @@ SPEC CHECKSUMS:
   CommonCrypto: e18c8416332cca5efe80c197f2a522d471c42626
   LogglyLogger-CocoaLumberjack: 9d84459e8377408e845ecef7a20ac0e15a4578e0
   MGMushParser: e5f80531a96a086694103592db4cbad3ffd78fa5
-  RNCryptor: 761fc3ed94d1a0e409ba5b8e5dbef6a8f69352a7
 
-PODFILE CHECKSUM: 1ea27b966f3851962099d47b8d8fdea6bd3fcc4e
+PODFILE CHECKSUM: 571fb1da79d1a4553d248cbd22f9522c3f312578
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.3.1

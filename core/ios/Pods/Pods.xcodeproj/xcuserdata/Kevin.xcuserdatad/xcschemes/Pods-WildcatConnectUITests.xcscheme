@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '85780DDA15B7D18E45C496F360581978'
+               BlueprintIdentifier = 'F28510F9C1ED4B1C9853838B9967767E'
                BlueprintName = 'Pods-WildcatConnectUITests'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-WildcatConnectUITests.a'>

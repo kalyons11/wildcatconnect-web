@@ -44,59 +44,8 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RNCryptor.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>0339639885D3F74DFCF0F68BBF55C91E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0562FF52ED5E8774A26D837F39DA4056</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>12E2BC28C62976C425F4B71C2723F0B1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>20430C98CD8EA11590B5DBF7067BD28D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>21A11892104ABE3662EC174DC13AB6DA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>30448F4F284ABAF04CD26DD12F9AC105</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>49FB4ED4C76FE3BE26D8A1A2CD72B2E5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>85780DDA15B7D18E45C496F360581978</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A4714CAF0C52729C9F8B00FE46CEE2C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

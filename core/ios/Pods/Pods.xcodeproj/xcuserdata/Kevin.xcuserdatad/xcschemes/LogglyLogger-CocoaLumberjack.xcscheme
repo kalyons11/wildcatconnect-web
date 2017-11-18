@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '30448F4F284ABAF04CD26DD12F9AC105'
+               BlueprintIdentifier = 'ACF3FA66C069C0113D132011969CD418'
                BlueprintName = 'LogglyLogger-CocoaLumberjack'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libLogglyLogger-CocoaLumberjack.a'>

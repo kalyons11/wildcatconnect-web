@@ -5,7 +5,6 @@ target 'WildcatConnect' do
 
   pod 'CocoaLumberjack'
   pod ‘LogglyLogger-CocoaLumberjack’
-  pod 'RNCryptor'
   pod 'CommonCrypto'
   pod 'AttributedMarkdown', :git => 'https://github.com/dreamwieber/AttributedMarkdown.git'
   pod 'MGMushParser'
