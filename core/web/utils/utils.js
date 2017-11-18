@@ -23,13 +23,11 @@ module.exports.encryptObject = function (object) {
 };
 
 module.exports.decrypt = function(string) {
-    console.log(key, iv, '***');
     var dec = crypto.decrypt(string, key, iv);
     return dec;
 };
 
 module.exports.decryptObject = function (string) {
-    console.log(key, iv, '***');
     var dec = crypto.decrypt(string, key, iv);
     return JSON.parse(dec);
 };
@@ -50,7 +48,7 @@ module.exports.linqForKeyValuePair = function(objects, key, value, isParse) {
     return result;
 };
 
-/*
+/**/
 
 global.config = module.exports.decryptObject(global.config);
 
@@ -70,7 +68,7 @@ winston.add(winston.transports.Loggly, {
     json: true
 });
 
-*/
+/**/
 
 //endregion
 
