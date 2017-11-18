@@ -78,8 +78,6 @@ function scheduleJobs() {
       runJob(key);
     });
     result.push(j);
-    if (j != null)
-      console.log(j.nextInvocation());
   });
 
   // Return a list of all jobs for reference.
@@ -93,23 +91,5 @@ if (process.argv.length > 2) {
 }
 
 var jobs = scheduleJobs();
-
-// var counter = 0,
-//   schedule = require('node-schedule'),
-//   taskSchedule = new schedule.RecurrenceRule();
-//
-// taskSchedule.minute = [56, 57, 58];
-//
-// function reportOnSchedule () {
-//   //increment the counter
-//   counter++;
-//
-//   //report that the scheduled task ran
-//   console.log('The scheduled task ran. This is iteration #: ' + counter);
-// }
-//
-// var x = schedule.scheduleJob({hour: 14, minute: 30, dayOfWeek: [0, 1, 2]}, reportOnSchedule);
-
+console.log(jobs);
 console.log('Initialized all jobs!');
-
-// console.log(x.nextInvocation());

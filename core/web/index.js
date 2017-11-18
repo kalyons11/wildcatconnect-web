@@ -78,12 +78,12 @@ try {
             ios: [
                 {
                     pfx: certPath,
-                    topic: bundle,
+                    bundleId: bundle,
                     production: true
                 },
                 {
                     pfx: devCertPath,
-                    topic: bundle,
+                    bundleId: bundle,
                     production: false
                 }
             ]
