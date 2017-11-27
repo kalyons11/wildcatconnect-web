@@ -539,7 +539,7 @@ exports.dayDelete = function (req, res) {
     query.first({
         success: function(object) {
             var date = new Date();
-            if (date.getDay() != 0 && date.getDay() != 1) {
+            if (true) { // date.getDay() != 0 && date.getDay() != 1 - temp hack for testing
                 //Continue... - don't do this on Mondays
                 var firstQuery = new Parse.Query("SchoolDayStructure");
                 firstQuery.equalTo("isActive", 1);
