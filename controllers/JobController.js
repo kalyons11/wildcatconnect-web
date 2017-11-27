@@ -558,11 +558,13 @@ exports.dayDelete = function (req, res) {
                                 var here = moment();
                                 var test = theDate.isAfter(here);
                                 if (schoolDate == now || test) {
+                                    utils.log('info', 'Cannot delete with this date.', {"schoolDate": schoolDate, "now": now});
                                     res.send("Date does not allow deletion at this time.");
                                 } else {
                                     object.set("isActive", 0);
                                     object.save(null, {
                                         success: function(myObject) {
+                                            utils.log("info", "Completed deletion!", {"day": schoolDate});
                                             res.send("SUCCESS");
                                         },
                                         error: function(myObject, error) {
@@ -589,6 +591,7 @@ exports.dayDelete = function (req, res) {
                     };
                 });
             } else {
+                utils.log("info", "No deletion at this time.", {});
                 res.send("Schedule mode does not allow deletion at this time.");
             };
         },
