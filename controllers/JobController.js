@@ -539,7 +539,7 @@ exports.dayDelete = function (req, res) {
     query.first({
         success: function(object) {
             var date = new Date();
-            if (true) { // date.getDay() != 0 && date.getDay() != 1 - temp hack for testing
+            if (date.getDay() != 0 && date.getDay() != 1) {
                 //Continue... - don't do this on Mondays
                 var firstQuery = new Parse.Query("SchoolDayStructure");
                 firstQuery.equalTo("isActive", 1);
@@ -592,7 +592,7 @@ exports.dayDelete = function (req, res) {
                 });
             } else {
                 var responseMessage = "Schedule mode does not allow deletion at this time.";
-                utils.log("info", responseMessage, {"date": date});
+                utils.log("info", responseMessage, {"date": date, "dayIndex": date.getDay()});
                 res.send(responseMessage);
             };
         },

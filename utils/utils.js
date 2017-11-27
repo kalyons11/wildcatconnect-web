@@ -48,6 +48,10 @@ module.exports.linqForKeyValuePair = function(objects, key, value, isParse) {
     return result;
 };
 
+if (! global.config || global.config === undefined || global.config === null) {
+  global.config = require("../config_enc");
+}
+
 global.config = module.exports.decryptObject(global.config);
 
 var config = global.config;
@@ -176,8 +180,6 @@ module.exports.removeLineBreaks = function(string) {
 };
 
 module.exports.log = function(level, message, objects) {
-  console.log(message);
-  console.log(objects);
 	winston.log(level, message, objects);
 };
 
