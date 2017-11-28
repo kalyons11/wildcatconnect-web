@@ -1,6 +1,6 @@
 # WildcatConnect
 
-[![Build Status](https://travis-ci.org/kalyons11/wildcatconnect-job.svg?branch=master)](https://travis-ci.org/kalyons11/wildcatconnect-job.svg?branch=master)
+[![Build Status](https://travis-ci.org/kalyons11/wildcatconnect-web.svg?branch=master)](https://travis-ci.org/kalyons11/wildcatconnect-web)
 
 Main WildcatConnect repository.
 
