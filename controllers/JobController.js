@@ -2,7 +2,6 @@ var utils = require('../utils/utils');
 var moment = require('moment');
 
 exports.handleJob = function(req, res) {
-   console.log(req.params, '****');
    if (req.body.secret == utils.decrypt(global.config.jobSecret)) {
         var name = req.params.name;
         switch (name) {
